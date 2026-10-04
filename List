@@ -1,0 +1,1069 @@
+時間が限られているため
+
+自身のGithubである内容を記載いたします。
+
+▼各種進捗
+
+【個人制作】
+
+総合
+
+・管理作品数　4作品
+・完了タスク　76 / 860
+・総合進捗率　約8.8％
+
+※進捗率は「■完了タスク数 ÷ 全タスク数 × 100」の単純タスク数基準で算出。
+
+【各ゲーム・進捗率】
+
+・水無瀬 凪 AIキャラクターゲーム
+　35 / 221完了
+　進捗率：約15.8％
+
+・ZERO DISTRICT
+　8 / 211完了
+　進捗率：約3.8％
+
+・Where the Light Ends
+　28 / 141完了
+　進捗率：約19.9％
+
+・BLIND SPOT
+　5 / 287完了
+　進捗率：約1.7％
+
+【1. 水無瀬 凪 AIキャラクターゲーム】
+
+使用技術：
+Unreal Engine 5
+C++
+Blueprint
+Python
+Ollama
+Qwen3:4b
+
+現在の制作段階：
+
+Phase 1「AI Prototype」後半
+～
+Phase 2「Game Foundation」初期
+
+完了タスク：
+35 / 221
+
+進捗率：
+約15.8％
+
+【現在の状態】
+
+Python上では、
+「水無瀬 凪と会話できるAIキャラクタープロトタイプ」
+まで成立。
+
+現在はAIシステム側の研究・実装がゲーム本体より先行している。
+
+今後はPython側だけを作り続けるのではなく、
+UE5との統合を開始し、
+
+「UE5の3D世界内で凪と実際に交流できるゲーム」
+
+へ発展させる。
+
+【完了済みの主な内容】
+
+■ AIキャラクター基本コンセプト
+■ 水無瀬 凪基本設定
+■ AIシステム基本構成
+■ Python環境構築
+■ Ollama導入
+■ Qwen3:4b導入
+■ ollama Python Package
+■ 日本語会話テスト
+■ heroine.json
+■ personality.py
+■ 基本人格
+■ 話し方
+■ 好き嫌い
+■ Emotionクラス
+■ happiness
+■ anger
+■ sadness
+■ embarrassment
+■ Emotion Clamp
+■ MainEmotion
+■ Relationshipクラス
+■ affection
+■ trust
+■ familiarity
+■ HumanFlawsクラス
+■ HumanFlawsパラメータ管理
+■ HumanFlaws Clamp
+■ StateAnalyzer Ver.1
+■ JSON Output
+■ Qwen3接続
+■ System Prompt
+■ History
+■ Character Response
+■ Short-term History
+
+【現在作業中】
+
+△ ゲーム全体設計
+△ 詳細Character Rules
+△ HumanFlaws意味定義
+△ StateAnalyzer改善
+△ PromptBuilder
+△ Rules
+△ InputGuard
+△ Safety System
+
+【今後の主要実装】
+
+□ 正式タイトル
+□ 最終ゲームループ
+□ 完成条件
+□ マップ最終仕様
+□ Emotion減衰
+□ EmotionとAnimation連動
+□ EmotionとTTS連動
+□ Relationship変化ルール
+□ RelationshipとMemory連動
+□ Relationshipと行動連動
+□ HumanFlaws Threshold
+□ HumanFlawsと行動連動
+□ HumanFlawsと会話連動
+□ IntentAnalyzer
+□ PlayerEmotionAnalyzer
+□ ImportanceAnalyzer
+□ StateUpdater
+□ LLMService
+□ OllamaProvider
+□ Rule Check
+□ Context Safety
+□ OutputGuard
+□ ActionGuard
+□ Prompt Injection対策
+□ Privacy対策
+□ Safety Logger
+□ Safety Test
+□ WorkingMemory
+□ EpisodicMemory
+□ PlayerMemory
+□ RelationshipMemory
+□ Long-term Save
+□ Memory Retrieval
+□ Memory Importance
+□ Forgetting
+□ Summarization
+□ UE5 AI Manager
+□ WorldState
+□ Python Server
+□ HTTP / WebSocket最終決定
+□ UE5 → Python通信
+□ Python → UE5通信
+□ JSON Protocol
+□ Timeout
+□ Error Handling
+□ Reconnect
+□ Interaction
+□ AI Conversation Input
+□ Microphone
+□ Controller対応
+□ 凪3Dモデル
+□ Animation
+□ Facial Animation
+□ 視線
+□ AI Action System
+□ Navigation
+□ STT
+□ TTS
+□ LipSync
+□ 都市マップ
+□ UI
+□ Debug UI
+□ Save / Load
+□ Sound
+□ 最適化
+□ Release Build
+
+【次の大目標】
+
+UE5
+↓
+Python
+↓
+Qwen3:4b
+↓
+Python
+↓
+UE5
+
+という通信を成立させ、
+
+「UE5上で入力した文章に対して、
+凪の返答がUE5画面上へ字幕表示される」
+
+状態まで完成させる。
+
+【2. ZERO DISTRICT】
+
+使用技術：
+Unity 6.6
+C#
+
+ジャンル：
+三人称視点3Dアクション
+
+現在の制作段階：
+
+Phase 0
+「企画・プロジェクト準備」
+
+完了タスク：
+8 / 211
+
+進捗率：
+約3.8％
+
+【現在の状態】
+
+現在はゲーム本体の実装より先に、
+ゲーム仕様・戦闘仕様・開発ロードマップなどの設計を進めている。
+
+設計書16ファイルとREADMEを作成済み。
+
+ゲーム本体の主要機能については、
+これからプロトタイプ実装を進める。
+
+今後は設計だけを増やす段階から、
+Unity上で実際に操作できるプロトタイプ制作へ移行する。
+
+【完了済みの主な内容】
+
+■ 設計書16ファイル作成
+■ ルートREADME・目次作成
+■ Phase 0～10ロードマップ作成
+■ 仕様決定リストD01～D21作成
+■ 71件の動作確認項目作成
+■ 決定済み基本操作を設計書へ反映
+■ 3段コンボ・回避キャンセル・回避後継続を設計へ反映
+■ 変更履歴・GitHub管理整備
+
+【確定済みの主要仕様】
+
+■ 三人称視点3Dアクション
+■ Windows PC
+■ キーボード・マウス対応
+■ ゲームパッド対応
+■ カメラ基準移動
+■ 移動方向へのキャラクター旋回
+■ 三人称自由カメラ
+■ 長押しダッシュ
+■ 回避
+■ 回避中の短い無敵時間
+■ 回避スタミナ消費なし
+■ 最大3段通常攻撃
+■ 通常攻撃から回避キャンセル
+■ 回避後のコンボ継続
+■ 強攻撃
+■ パリィ
+■ 軽い攻撃ターゲット補正
+■ 通常戦闘
+■ プレイヤー強化
+■ 一定時間後のボス戦
+■ ボス撃破後の次段階移行
+
+【現在作業中】
+
+△ 戦闘詳細仕様確定
+△ 開発環境詳細選定
+
+【今後の主要実装】
+
+□ 初期版の敵・ボス・強化量決定
+□ 完成条件
+□ 性能基準
+□ Unity環境確認
+□ Input System
+□ プレイヤー移動
+□ 自由カメラ
+□ ダッシュ
+□ 回避
+□ 無敵時間
+□ 回避再使用待ち
+□ HP
+□ ダメージ
+□ 攻撃判定
+□ 3段コンボ
+□ 回避キャンセル
+□ 回避後コンボ継続
+□ 強攻撃
+□ パリィ
+□ ターゲット補正
+□ 敵AI
+□ 敵攻撃
+□ 敵HP
+□ 敵死亡
+□ ボス
+□ 成長システム
+□ ゲーム進行
+□ 街フィールド
+□ Animation
+□ VFX
+□ SE
+□ BGM
+□ HUD
+□ リザルト
+□ 最適化
+□ Windows Build
+□ プレイテスト
+
+【今後の実装順】
+
+環境確認
+↓
+Input System
+↓
+プレイヤー移動
+↓
+自由カメラ
+↓
+ダッシュ
+↓
+回避
+↓
+HP・ダメージ
+↓
+攻撃判定
+↓
+3段コンボ
+↓
+回避キャンセル
+↓
+強攻撃
+↓
+パリィ
+↓
+ターゲット補正
+↓
+敵AI
+↓
+戦闘調整
+↓
+ゲーム進行
+↓
+成長
+↓
+ボス
+↓
+街
+↓
+UI
+↓
+Animation / VFX / Sound
+↓
+最適化
+↓
+Windows Build
+↓
+プレイテスト
+
+【3. Where the Light Ends】
+
+使用技術：
+Unreal Engine 5
+C++
+Blueprint
+
+ジャンル：
+一人称ホラー / 探索
+
+全タスク：
+141件
+
+完了タスク：
+28 / 141
+
+進捗率：
+約19.9％
+
+【現在の状態】
+
+UE5 C++を基盤として、
+プレイヤー、一人称視点、ランプ、マップ試作、
+距離HUD、独自フォントなどの基礎部分を実装済み。
+
+現在は試作した個別システムを、
+実際に最初から最後まで遊べるゲームへまとめる段階へ移行している。
+
+特に、
+
+・連続区画
+・イベント
+・敵
+・ゲームフロー
+
+が今後の重要部分。
+
+【完了済みの主な内容】
+
+■ UE5 C++プロジェクト・ビルド環境
+■ WhereTheLightEndsへの改名
+■ C++親クラスとPlayer BP継承
+■ プレイヤー移動
+■ 一人称視点
+■ ジャンプ入力
+■ ランプの手への追従
+■ 腕IK
+■ 指の握り補正
+■ キーボード・マウス操作
+■ ゲームパッド基本割当
+■ ランプモデル
+■ ガラス表現
+■ 光源
+■ 炎VFX
+■ 光と炎の同時ON / OFF
+■ 旧ワープ間のランプ状態維持
+■ 岩の洞窟7区画試作
+■ 木張り坑道7区画試作
+■ 角形坑道7区画試作
+■ 神社参道7区画試作
+■ 旧4マップのワープ接続
+■ 同種区画接続試作
+■ 異種区画接続試作
+■ 直線最高到達距離計測
+■ 距離HUD
+■ 独自数字表示
+■ 旧ワープ間の距離引継ぎ
+■ 数字0123456789mのフォント化
+■ 日本語限定字種フォント化
+■ 未収録文字フォールバック
+■ 軽量化候補監査
+■ トロッコ・浮遊小物・壁抜け修正
+
+【現在作業中】
+
+△ 約30イベントの共通枠設計
+△ AI活用研究の記録整理
+
+【今後の最優先項目】
+
+□ 新企画の必須仕様固定
+□ ゲーム状態管理
+□ プレイヤー仕様最終調整
+□ 捕獲・失敗時の入力停止
+□ 再挑戦時のPlayer初期化
+□ コントローラー実機検証
+□ メニュー両入力対応
+□ ランプ状態維持検証
+□ 区画管理Actor
+□ 前方2区画の先読み・配置
+□ 残る道の区画化
+□ 読込遅延時の進入防止
+□ 最高到達区画管理
+□ 後方3区画保持
+□ 後戻り限界
+□ 安全なアンロード
+□ 退去待ち区画の上限制御
+□ 全区画回帰検査
+□ 旧ワープから本編への移行
+□ 区画選択ルール
+□ 連続経路用距離計測
+□ Event基底クラス
+□ Event定義データ
+□ Event抽選・選択管理
+□ Event配置ポイント
+□ 共通Interaction
+□ Event履歴管理
+□ Event中断・後始末
+□ 代表Event実装
+□ Event再発火・後退テスト
+□ 敵の役割・数確定
+□ 捕獲・回避判定
+□ ゴール
+□ クリア条件
+□ ゲームオーバー条件
+□ 再挑戦フロー
+□ 操作チュートリアル
+□ プレイ時間調整
+□ タイトル
+□ ポーズ
+□ 再開
+□ タイトルへ戻る
+□ 対象PC・解像度・目標FPS固定
+□ CPU / GPU / メモリ基準測定
+□ 長時間生成・撤去試験
+□ 全イベント回帰テスト
+□ 素材・フォント出典整理
+□ Windowsテストビルド
+□ Cook対象整理
+□ 最終通しプレイ
+□ 展示用操作案内
+□ 最終成果物固定
+□ バックアップ
+
+【4. BLIND SPOT】
+
+使用技術：
+C++
+DxLib
+
+ジャンル：
+3Dステルスゲーム
+
+先行制作：
+汎用3Dスタータープロジェクト
+
+現在の制作段階：
+
+汎用3Dスターター
+Phase 0「設計・環境確認」
+→ Phase 1「プロトタイプ」移行前
+
+BLIND SPOT本編
+Phase 0「企画・技術計画」
+
+完了タスク：
+5 / 287
+
+進捗率：
+約1.7％
+
+【現在の状態】
+
+BLIND SPOT本編を直接制作する前に、
+今後のC++ / DxLib製3Dゲームでも再利用できる
+「汎用3Dスタータープロジェクト」を先に制作する。
+
+スターター完成後、
+その基盤を利用してBLIND SPOT本編へ移行する。
+
+現在は設計・環境確認段階。
+
+次の工程から、
+汎用3Dスターターのコード実装を開始する。
+
+【完了済み】
+
+■ C++ / DxLib使用方針確認
+■ 汎用3Dスターター先行制作方針確認
+■ スターター初期完成条件確認
+■ 基本クラス役割案作成
+■ 制作状況・今後のタスク整理
+
+【スターター初期完成目標】
+
+□ DxLib初期化
+□ 3D空間表示
+□ 仮地面
+□ 3Dカメラ
+□ 仮プレイヤー
+□ キーボード移動
+□ コントローラー移動
+□ プレイヤーの向き変更
+□ カメラ追従
+□ 基本ゲームループ
+□ Update / Draw分離
+□ クラス責務分離
+□ MV1モデルなどへの差し替え可能な構造
+
+【開発方針】
+
+■ C++
+■ DxLib
+■ 3Dゲーム
+■ .h / .cpp分割
+■ クラスごとの責務分離
+■ カプセル化
+■ public / privateの適切な使用
+■ マジックナンバーを避ける
+■ 再利用しやすい構造
+■ ポートフォリオとして説明可能なコードを目指す
+
+【BLIND SPOT本編の方向性】
+
+■ 3Dステルスゲーム
+■ 潜入
+■ 敵・遮蔽物確認
+■ 発見を避けて移動
+■ 目的達成
+■ 脱出
+■ 敵AIを技術的中心とする
+■ 視覚によるPlayer認識
+■ 聴覚によるPlayer認識
+■ 敵の状態遷移
+■ 見失った後の捜索
+■ 巡回への復帰
+
+【予定している敵AI状態】
+
+Patrol
+↓
+Suspicious
+↓
+Investigate
+↓
+Alert
+↓
+Chase
+↓
+Search
+↓
+Return
+↓
+Patrol
+
+【今後の主要実装】
+
+□ Visual Studio / DxLib環境確認
+□ DxLib起動基盤
+□ Gameクラス
+□ Game Loop
+□ Update / Draw分離
+□ DeltaTime
+□ Inputクラス
+□ キーボード入力
+□ コントローラー入力
+□ デッドゾーン
+□ Playerクラス
+□ 基本移動
+□ 向き変更
+□ Cameraクラス
+□ カメラ追従
+□ Worldクラス
+□ 地面描画
+□ Collision
+□ 重力
+□ 接地
+□ ジャンプ
+□ MV1モデル
+□ Animation
+
+スターター完成後：
+
+□ BLIND SPOT最小完成範囲確定
+□ Enemyクラス
+□ EnemyManager
+□ Patrol
+□ 状態機械
+□ 視認距離
+□ 視野角
+□ 方向ベクトル
+□ 正規化
+□ 内積判定
+□ Ray / 遮蔽物判定
+□ Noise System
+□ Investigate
+□ Chase
+□ 最後の目撃位置
+□ Search
+□ Return
+□ 経路探索
+□ 本番ステージ
+□ 目的
+□ 脱出
+□ 失敗条件
+□ UI
+□ Sound
+□ Debug表示
+□ 最適化
+□ Release Build
+□ ポートフォリオ資料
+
+▼今週できたこと
+
+【水無瀬 凪 AIキャラクターゲーム】
+
+・AIキャラクター全体構成整理
+・Qwen3:4bによる会話確認
+・Personality管理
+・Emotion管理
+・Relationship管理
+・HumanFlaws管理
+・StateAnalyzer実装
+・内部状態変化テスト
+・短期Conversation History
+・Character Rules検討
+・PromptBuilder構成検討
+・InputGuard Ver.1
+・Safety System構成検討
+・UE5統合構造の整理
+・AIキャラクター関連研究
+・ゲーム業界におけるAI利用調査
+・AIによるゲーム開発効率化・コスト・利点・課題の調査
+
+【ZERO DISTRICT】
+
+・ゲーム仕様の整理
+・確定仕様 / 未決定仕様の分類
+・実装タスク細分化
+・必要技術整理
+・実装順序整理
+・各STEPの完了条件整理
+・プロトタイプ実装に向けた準備
+
+【Where the Light Ends】
+
+・制作タスクを141件に整理
+・完了 / 作業中 / 未着手 / 状態不明を分類
+・イベントシステム設計
+・今後の実装優先順位整理
+・AI活用研究
+
+【BLIND SPOT】
+
+・C++ / DxLib制作方針決定
+・汎用3Dスターター先行制作方針決定
+・スターター初期完成条件決定
+・基本クラス構成検討
+・BLIND SPOT基本仕様検討
+・敵AI / ステルス判定の技術検討
+・開発ロードマップ作成
+
+▼今週できなかったこと
+
+【水無瀬 凪 AIキャラクターゲーム】
+
+・UE5 ↔ Python接続
+・OutputGuard
+・ActionGuard
+・長期Memory
+・STT
+・TTS
+・凪のUE5本実装
+・Animation
+・Navigation
+・都市マップ
+
+【ZERO DISTRICT】
+
+・Unity環境確認
+・基本操作
+・戦闘
+・敵AI
+・ゲーム進行
+・Windows Build
+
+ゲーム本体の実装より設計・仕様整理を優先したため、
+主要システムの実装は次週以降に進める。
+
+【Where the Light Ends】
+
+・必須ゲーム仕様の最終固定
+・本番用区画管理
+・連続マップシステム
+・イベントシステム本実装
+・敵システム
+・ゲームクリア / ゲームオーバー処理
+・最終UI
+・最適化
+・最終Windows Build
+
+【BLIND SPOT】
+
+・Visual Studio / DxLib環境構築
+・DxLib起動
+・スターター基盤実装
+・3D空間表示
+・プレイヤー基本実装
+・BLIND SPOT本編の詳細仕様決定
+
+今週は設計を中心に進めたため、
+スターターの実装は次週から開始する。
+
+▼次週までにやること
+
+【水無瀬 凪 AIキャラクターゲーム】
+
+Python AI構造整理
+StateAnalyzer改善
+StateUpdater
+ConversationManager
+Safety Ver.2
+OutputGuard
+Structured Response
+UE5 ↔ Python通信準備
+
+次週目標：
+
+UE5から文章入力
+↓
+Pythonへ送信
+↓
+Qwen3:4bで処理
+↓
+凪の返答生成
+↓
+UE5へ返却
+↓
+字幕表示
+
+までを成立させる。
+
+【ZERO DISTRICT】
+
+Unity Editor / Project状態確認
+初期完成範囲決定
+強攻撃基本仕様決定
+パリィ基本仕様決定
+Input System
+プレイヤー移動
+自由カメラ
+
+次週目標：
+
+設計中心の段階から、
+Unity上で操作できるプロトタイプ制作へ移行する。
+
+【Where the Light Ends】
+
+必須ゲーム仕様固定
+ゴール / ゲームオーバー条件決定
+区画管理Actor設計・実装
+前方区画先読み
+後方区画管理
+連続経路用距離計測
+Event共通システム設計
+代表Event1件実装
+
+次週目標：
+
+現在のマップ試作から、
+実際に連続してプレイできる本編システムへ移行する。
+
+【BLIND SPOT】
+
+プロジェクト状態確認
+Visual Studio / DxLib環境構築
+基本クラス構成決定
+DxLib起動・終了処理
+Game Loop
+Update / Draw分離
+3D空間表示
+地面表示
+仮プレイヤー表示
+
+環境・基盤が完成した場合：
+
+キーボード移動
+プレイヤー向き変更
+カメラ追従
+コントローラー移動
+
+次週目標：
+
+起動
+↓
+3D空間
+↓
+地面
+↓
+仮プレイヤー
+
+までを最低到達地点とする。
+
+▼その他
+
+今週から個人制作4作品を共通形式で管理する。
+
+現在の制作段階：
+
+水無瀬 凪 AIキャラクターゲーム
+→ AI Prototype後半
+→ UE5統合準備
+
+ZERO DISTRICT
+→ 企画・設計
+→ Unityプロトタイプ実装準備
+
+Where the Light Ends
+→ 基礎実装
+→ 本編システム構築
+
+BLIND SPOT
+→ 設計・環境確認
+→ 汎用3Dスターター制作準備
+
+今後は全作品で、
+
+■ 完了
+△ 作業中
+□ 未着手
+？ 状態不明
+
+を共通ステータスとして使用する。
+
+進捗率は、
+
+完了タスク数 ÷ 全タスク数 × 100
+
+で統一する。
+
+現在の4作品合計：
+
+・完了　76
+・全タスク　860
+・総合進捗率　約8.8％
+
+来週以降予定中のDirectX 11作品を追加した場合、
+DirectX 11のタスクも同じ基準で追加し、
+5作品全体の総合進捗率を再計算する。
+
+▼現在の研究内容
+
+【水無瀬 凪 AIキャラクターゲーム】
+
+・ゲーム内AIキャラクター設計
+・LLMとゲームロジックの役割分担
+・人格の一貫性
+・Emotion
+・Relationship
+・HumanFlaws
+・長期Memory
+・AI Safety
+・AI Action Control
+・Structured Output
+・UE5 ↔ Pythonリアルタイム通信
+・STT
+・TTS
+・AI NPC
+・ゲーム開発におけるAI活用
+
+【ZERO DISTRICT】
+
+・3段コンボ状態管理
+・回避キャンセル
+・回避後コンボ継続
+・無敵時間
+・再使用待ち時間
+・パリィ
+・自由カメラ
+・攻撃ターゲット補正
+・敵AI
+・ヒットストップ
+・アニメ調レンダリング
+・通常戦闘 / ボス戦の進行管理
+
+【Where the Light Ends】
+
+・UE5区画管理
+・マップ先読み
+・安全なアンロード
+・長時間生成 / 撤去
+・イベント管理システム
+・ホラーイベント設計
+・ランプを利用したゲームシステム
+・距離管理
+・独自フォント
+・3Dサウンド
+・環境音
+・AIを利用したゲーム制作工程
+
+【BLIND SPOT】
+
+・再利用可能な3Dゲーム基盤
+・C++クラス設計
+・カプセル化
+・.h / .cpp分割
+・Game Loop
+・Update / Draw分離
+・DeltaTime
+・3D座標
+・方向ベクトル
+・正規化
+・内積
+・Camera制御
+・Collision
+・Ray / 線分判定
+・状態機械
+・視覚AI
+・聴覚AI
+・Noise System
+・経路探索
+・MV1モデル
+
+▼添付
+
+【水無瀬 凪 AIキャラクターゲーム】
+
+・Python実行画面
+・凪との会話ログ
+・Emotion変化
+・HumanFlaws表示
+・InputGuard結果
+・Pythonフォルダ構成
+・AI Architecture図
+・UE5スクリーンショット
+・GitHub
+・AI研究資料
+・プレイ動画
+
+【ZERO DISTRICT】
+
+・GitHubリポジトリ
+・ゲーム設計書
+・戦闘設計書
+・開発ロードマップ
+・変更履歴
+・制作状況整理
+
+【Where the Light Ends】
+
+・UE5ゲーム画面
+・ランプ
+・各坑道マップ
+・距離HUD
+・独自フォント
+・Blueprint / C++実装画面
+・イベント設計
+・プレイ動画
+・タスク管理表
+
+【BLIND SPOT】
+
+・開発ロードマップ
+・タスク管理表
+
+今後追加：
+
+・クラス構成図
+・スターター起動画面
+・プレイヤー移動画面
+・カメラ追従動画
+・敵AI状態遷移図
+・視野角デバッグ表示
+・Ray判定デバッグ表示
+・Noise範囲デバッグ表示
+・GitHubリポジトリ
+・BLIND SPOTプレイ動画
+
+【今週終了時点まとめ】
+
+・水無瀬 凪 AIキャラクターゲーム
+　35 / 221完了
+　進捗率：約15.8％
+　AIプロトタイプ成立。
+　次はUE5との通信・統合。
+
+・ZERO DISTRICT
+　8 / 211完了
+　進捗率：約3.8％
+　設計基盤を中心に制作。
+　次はUnity上でプロトタイプ実装開始。
+
+・Where the Light Ends
+　28 / 141完了
+　進捗率：約19.9％
+　基礎システムを実装済み。
+　次は区画管理・イベント・ゲームフローなどの本編システム。
+
+・BLIND SPOT
+　5 / 287完了
+　進捗率：約1.7％
+　C++ / DxLibによる制作方針とスターター仕様を整理。
+　次は汎用3Dスターター実装開始。
+
+【4作品総合】
+
+・完了タスク　76 / 860
+・総合進捗率　約8.8％

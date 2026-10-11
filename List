@@ -9,16 +9,16 @@
 総合
 
 ・管理作品数　4作品
-・完了タスク　76 / 860
-・総合進捗率　約8.8％
+・完了タスク／総合進捗率：再集計待ち
+・旧集計：76 / 860、約8.8％（凪の2026-10-11更新を反映する前の値）
 
 ※進捗率は「■完了タスク数 ÷ 全タスク数 × 100」の単純タスク数基準で算出。
 
 【各ゲーム・進捗率】
 
 ・水無瀬 凪 AIキャラクターゲーム
-　35 / 221完了
-　進捗率：約15.8％
+　UE5・Python統合デモが動作する段階（2026-10-11確認）
+　完了数／進捗率：再集計待ち（旧集計35 / 221、約15.8％）
 
 ・ZERO DISTRICT
 　8 / 211完了
@@ -32,178 +32,96 @@
 　5 / 287完了
 　進捗率：約1.7％
 
-【1. 水無瀬 凪 AIキャラクターゲーム】
+【1. 水無瀬 凪 AIキャラクターゲーム／EGO_DAYS】
+
+更新日：2026-10-11
+ソース参照：2026-10-11。以下の実プレイ検証は2026-10-08の記録。
 
 使用技術：
-Unreal Engine 5
-C++
-Blueprint
-Python
-Ollama
-Qwen3:4b
+Unreal Engine 5.8 / C++ / Blueprint / Python
+Ollama / qwen3:4b-instruct-2507-q4_K_M
+VOICEVOX 暁記ミタマ（仮音声・ノーマル122）
 
 現在の制作段階：
+AI Prototypeから、UE5と統合したローカル技術デモへ進展。
+開発PCでゲーム起動 → 会話 → 仮音声 → 会話しぐさ → 室内巡回を接続。
+一般販売用の完成版や、独立した配布用exeではない。
 
-Phase 1「AI Prototype」後半
-～
-Phase 2「Game Foundation」初期
+完了タスク／進捗率：再集計待ち。
+旧集計は35 / 221、約15.8％。元のタスク定義との対応を整理するまで、
+新しい完了数や進捗率は推定しない。
 
-完了タスク：
-35 / 221
+【目的】
+凪と室内で交流するゲームを制作する。
+最優先はキャラクター設定・性格・発言の一貫性。
+人物設定と処理を分離し、他のキャラクターやゲームへ応用できる技術を目指す。
 
-進捗率：
-約15.8％
+【実装済み：Python】
+■ 人物JSONの読み込み、人物設定と現在のゲーム内情報の分離
+■ 入力チェック → 意味分類 → 固定ルールの状態更新 → 返答生成
+■ 感情4・関係性3・性格傾向10の計17値、0～100の制限
+■ 9種類のintent分類とStateUpdaterの更新表
+■ 性格傾向の派生定義と、今回関連するルールの選択
+■ 最近20メッセージの短期履歴
+■ 定型返答の併用、限定的な返答品質検査、最大1回の修正生成
+■ JSONL／Markdownへ会話・処理時間・数値の前後と差分・エラーを記録
+■ ローカルHTTPの/chat、/health、/audio、/vision
+■ 入力サイズ制限、会話処理の排他、最大4セッション
+■ 量子化モデル、CPU4スレッド、標準GPU8層を上限とする設定
+■ VOICEVOXの音声合成、音声ID、最大24件／20MiBのWAVキャッシュ
 
-【現在の状態】
+【実装済み：UE5】
+■ メインマップArchVis_RT、室内とベランダ、都市の背景
+■ キーマウ／パッドの移動と視点、一人称／三人称切替、ジャンプ無効
+■ 9か所の開閉ドアと衝突確認
+■ 16か所の家具アクションポイント（実動作は未接続）
+■ 仮モデルの骨を利用した基本モーション8種類
+■ 格子状の経路探索と障害物検査による室内巡回
+■ ドアの開放・退避・再計画、会話中の停止と向き直り
+■ 会話UI、非同期HTTP、字幕、WAV再生、Talk、巡回再開
+■ 日本時間に同期した朝・昼・夕方・夜の環境変化
+■ 頭部追従の視覚カメラ、256×144・標準2秒間隔のPNG出力
+■ Python側で画像の鮮度・SHA1・メタデータ整合性を確認
+■ 必要なPython／音声サービスの自動準備、所有プロセスの終了処理
+■ 起動.cmdによる720p・30fps上限のローカルデモ起動
 
-Python上では、
-「水無瀬 凪と会話できるAIキャラクタープロトタイプ」
-まで成立。
+【検証済みの範囲】
+2026-10-08：UE5 Developmentビルド成功。
+実際のUI → Python実AI → VOICEVOX → WAV取得 → UE5再生状態を確認。
+約95秒の通常起動試験で約48m移動し、会話停止・Talk・音声後の巡回再開を確認。
+終了後に自動起動したPythonと音声エンジンが停止することを確認。
+会話履歴、HTTP、入力制限、音声等の回帰試験を実施。
+単一試験の結果であり、長時間安定性や会話の完全な正確性を保証するものではない。
+今回の更新で追加の実プレイやオフライン試験は実施していない。
 
-現在はAIシステム側の研究・実装がゲーム本体より先行している。
+【未実装・今後の課題】
+□ 全体の負荷・応答時間・フレームレート・長時間安定性の評価
+□ 会話の一貫性、誤分類、固定設定との矛盾の評価と改善
+□ モデル読み込みまでを含めた準備完了判定
+□ 全体のタイムアウト／キャンセル統一、字幕と音声の待ち方改善
+□ 通信開始失敗時の停止解除、古い音声応答の破棄
+□ 生成失敗時の状態更新確定方針、未更新項目の規則、時間減衰
+□ 再起動をまたぐ長期記憶と履歴復元
+□ カメラ画像の認識・理解と会話への反映
+□ 着席・読書・睡眠、人格判断による移動、追従命令
+□ 感情と全モーションの自動連動、表情、音素に対応した口パク
+□ 仮音声の音程・抑揚・スタイル調整、音声入力／STT
+□ 最終モデルとゲームループ、完成条件
+□ 配布用パッケージ、別PC検証、クラウド提供、利用条件の確認
 
-今後はPython側だけを作り続けるのではなく、
-UE5との統合を開始し、
-
-「UE5の3D世界内で凪と実際に交流できるゲーム」
-
-へ発展させる。
-
-【完了済みの主な内容】
-
-■ AIキャラクター基本コンセプト
-■ 水無瀬 凪基本設定
-■ AIシステム基本構成
-■ Python環境構築
-■ Ollama導入
-■ Qwen3:4b導入
-■ ollama Python Package
-■ 日本語会話テスト
-■ heroine.json
-■ personality.py
-■ 基本人格
-■ 話し方
-■ 好き嫌い
-■ Emotionクラス
-■ happiness
-■ anger
-■ sadness
-■ embarrassment
-■ Emotion Clamp
-■ MainEmotion
-■ Relationshipクラス
-■ affection
-■ trust
-■ familiarity
-■ HumanFlawsクラス
-■ HumanFlawsパラメータ管理
-■ HumanFlaws Clamp
-■ StateAnalyzer Ver.1
-■ JSON Output
-■ Qwen3接続
-■ System Prompt
-■ History
-■ Character Response
-■ Short-term History
-
-【現在作業中】
-
-△ ゲーム全体設計
-△ 詳細Character Rules
-△ HumanFlaws意味定義
-△ StateAnalyzer改善
-△ PromptBuilder
-△ Rules
-△ InputGuard
-△ Safety System
-
-【今後の主要実装】
-
-□ 正式タイトル
-□ 最終ゲームループ
-□ 完成条件
-□ マップ最終仕様
-□ Emotion減衰
-□ EmotionとAnimation連動
-□ EmotionとTTS連動
-□ Relationship変化ルール
-□ RelationshipとMemory連動
-□ Relationshipと行動連動
-□ HumanFlaws Threshold
-□ HumanFlawsと行動連動
-□ HumanFlawsと会話連動
-□ IntentAnalyzer
-□ PlayerEmotionAnalyzer
-□ ImportanceAnalyzer
-□ StateUpdater
-□ LLMService
-□ OllamaProvider
-□ Rule Check
-□ Context Safety
-□ OutputGuard
-□ ActionGuard
-□ Prompt Injection対策
-□ Privacy対策
-□ Safety Logger
-□ Safety Test
-□ WorkingMemory
-□ EpisodicMemory
-□ PlayerMemory
-□ RelationshipMemory
-□ Long-term Save
-□ Memory Retrieval
-□ Memory Importance
-□ Forgetting
-□ Summarization
-□ UE5 AI Manager
-□ WorldState
-□ Python Server
-□ HTTP / WebSocket最終決定
-□ UE5 → Python通信
-□ Python → UE5通信
-□ JSON Protocol
-□ Timeout
-□ Error Handling
-□ Reconnect
-□ Interaction
-□ AI Conversation Input
-□ Microphone
-□ Controller対応
-□ 凪3Dモデル
-□ Animation
-□ Facial Animation
-□ 視線
-□ AI Action System
-□ Navigation
-□ STT
-□ TTS
-□ LipSync
-□ 都市マップ
-□ UI
-□ Debug UI
-□ Save / Load
-□ Sound
-□ 最適化
-□ Release Build
+【現在の制約】
+巡回先は経路探索とランダム選択であり、人格LLMによる自由行動ではない。
+カメラ画像を受け取れるが、画像理解はまだ会話へ接続していない。
+履歴保存と、再起動後の記憶復元は別。後者は未実装。
+街は室内から見る背景。街を自由に歩く機能は今回の主目的に含めない。
+17値全てを記録するが、現在の更新表で変化する項目は限定的。
+起動はUnrealEditor.exe -gameを使い、このPCのUE5・Python等に依存する。
+素材と仮モデルは外部アセット、実装・検証には生成AIを活用。
 
 【次の大目標】
-
-UE5
-↓
-Python
-↓
-Qwen3:4b
-↓
-Python
-↓
-UE5
-
-という通信を成立させ、
-
-「UE5上で入力した文章に対して、
-凪の返答がUE5画面上へ字幕表示される」
-
-状態まで完成させる。
+会話接続の新規実装から、統合デモの安定化とキャラクター正確性の評価へ移る。
+負荷と処理時間を段階別に測り、通信・音声・状態更新の失敗経路を改善する。
+その後、視覚理解・長期記憶・生活動作を段階的に追加する。
 
 【2. ZERO DISTRICT】
 
@@ -674,23 +592,14 @@ Patrol
 
 【水無瀬 凪 AIキャラクターゲーム】
 
-・AIキャラクター全体構成整理
-・Qwen3:4bによる会話確認
-・Personality管理
-・Emotion管理
-・Relationship管理
-・HumanFlaws管理
-・StateAnalyzer実装
-・内部状態変化テスト
-・短期Conversation History
-・Character Rules検討
-・PromptBuilder構成検討
-・InputGuard Ver.1
-・Safety System構成検討
-・UE5統合構造の整理
-・AIキャラクター関連研究
-・ゲーム業界におけるAI利用調査
-・AIによるゲーム開発効率化・コスト・利点・課題の調査
+・UE5／Pythonの会話、仮音声、会話しぐさ、巡回を統合
+・短期履歴、17値の前後差分、処理時間と失敗履歴を記録
+・入力制限、意味分析、固定状態更新、返答品質検査を分離
+・室内／ベランダ／都市背景、ドア、プレイヤー操作を整備
+・視覚画像の転送と整合性確認まで実装
+・2026-10-08に実UIからの会話・音声・移動再開を検証
+・ポートフォリオ、実演カンペ、プログラム詳細、デモ作成手順を作成
+※期間が曖昧な「今週」の欄は、2026-10-11時点の累積実績として更新。
 
 【ZERO DISTRICT】
 
@@ -724,16 +633,11 @@ Patrol
 
 【水無瀬 凪 AIキャラクターゲーム】
 
-・UE5 ↔ Python接続
-・OutputGuard
-・ActionGuard
-・長期Memory
-・STT
-・TTS
-・凪のUE5本実装
-・Animation
-・Navigation
-・都市マップ
+・長期記憶の復元、視覚画像の理解
+・着席／睡眠／読書の実動作、人格に基づく自由行動
+・顔の表情と音素口パク、音声入力、仮音声の表現調整
+・長時間の安定性、完全なオフライン試験、別PCでの配布検証
+※会話接続・仮TTS・基本モーション・室内巡回は実装済み。
 
 【ZERO DISTRICT】
 
@@ -775,30 +679,12 @@ Patrol
 
 【水無瀬 凪 AIキャラクターゲーム】
 
-Python AI構造整理
-StateAnalyzer改善
-StateUpdater
-ConversationManager
-Safety Ver.2
-OutputGuard
-Structured Response
-UE5 ↔ Python通信準備
-
-次週目標：
-
-UE5から文章入力
-↓
-Pythonへ送信
-↓
-Qwen3:4bで処理
-↓
-凪の返答生成
-↓
-UE5へ返却
-↓
-字幕表示
-
-までを成立させる。
+・段階別の処理時間とUE5／AI同時実行負荷を測定
+・モデル準備判定、通信失敗、タイムアウト、古い音声応答を改善
+・人物設定と観測に反する返答の評価ケースを増やす
+・状態更新失敗経路と更新対象の不足を整理
+・元の221タスクとの対応を確認し、完了数を再集計
+※以後の予定であり、実施済みではない。
 
 【ZERO DISTRICT】
 
@@ -868,9 +754,9 @@ Update / Draw分離
 
 現在の制作段階：
 
-水無瀬 凪 AIキャラクターゲーム
-→ AI Prototype後半
-→ UE5統合準備
+水無瀬 凪 AIキャラクターゲーム／EGO_DAYS
+→ UE5・Python統合デモ
+→ 安定性・キャラクター正確性の評価
 
 ZERO DISTRICT
 → 企画・設計
@@ -901,9 +787,8 @@ BLIND SPOT
 
 現在の4作品合計：
 
-・完了　76
-・全タスク　860
-・総合進捗率　約8.8％
+・旧集計：完了76／全860、約8.8％
+・2026-10-11更新後：凪の元タスクとの対応を再集計するまで総合値は保留
 
 来週以降予定中のDirectX 11作品を追加した場合、
 DirectX 11のタスクも同じ基準で追加し、
@@ -913,21 +798,13 @@ DirectX 11のタスクも同じ基準で追加し、
 
 【水無瀬 凪 AIキャラクターゲーム】
 
-・ゲーム内AIキャラクター設計
-・LLMとゲームロジックの役割分担
-・人格の一貫性
-・Emotion
-・Relationship
-・HumanFlaws
-・長期Memory
-・AI Safety
-・AI Action Control
-・Structured Output
-・UE5 ↔ Pythonリアルタイム通信
-・STT
-・TTS
-・AI NPC
-・ゲーム開発におけるAI活用
+・固定設定／観測／短期履歴／長期記憶の分離
+・LLM分類と固定ゲームロジックの役割分担
+・誤分類と人物設定の矛盾を分ける評価
+・視覚キャプチャの非同期化、巡回グリッドの再利用
+・字幕と音声の段階的配信、全体の時間予算
+・入力制限、プライバシー、履歴の保持と削除
+・再利用可能なキャラクター設計と将来のクラウド構成
 
 【ZERO DISTRICT】
 
@@ -986,17 +863,11 @@ DirectX 11のタスクも同じ基準で追加し、
 
 【水無瀬 凪 AIキャラクターゲーム】
 
-・Python実行画面
-・凪との会話ログ
-・Emotion変化
-・HumanFlaws表示
-・InputGuard結果
-・Pythonフォルダ構成
-・AI Architecture図
-・UE5スクリーンショット
-・GitHub
-・AI研究資料
-・プレイ動画
+・公開可能な室内／書斎／ベランダの開発画像
+・AI構成、実演手順、内部プログラム説明
+・実プレイ検証の要約（2026-10-08）
+・ポートフォリオPROJECT 04：EGO_DAYS
+※会話ログや個人情報、ソースZIP、外部素材はこのリポジトリへ追加しない。
 
 【ZERO DISTRICT】
 

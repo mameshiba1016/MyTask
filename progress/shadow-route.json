@@ -1,426 +1,3400 @@
 {
   "project": "研究所ステルスゲーム（仮題：SHADOW ROUTE）",
   "updated": "2026-10-25",
+  "revision": 2,
   "baseline": "研究所1ステージの潜入・情報回収・脱出を遊べるWindows用三人称ゲーム",
+  "baselineReason": "他作品の機能・クラス・入力・素材・検証単位に合わせ、過度にまとめた58件を再分解。ゲーム範囲の追加ではなく集計基準の見直し。旧親項目と新明細は二重計上しない。",
+  "supersedes": "progress/archive/shadow-route-v1-58.json",
   "countingRule": "doneのみ完了として1件。in_progressとtodoは完了に含めない。作業量加重やゲーム品質の完成率ではない。週報作成自体はタスク数へ加算しない。",
-  "maintenance": "IDを固定し、状態と確認根拠を更新する。範囲追加時は末尾へ追加し、分母変更を報告する。総合集計は担当しない。",
+  "maintenance": "SR2の固定IDで状態・受入条件・確認根拠を更新する。今後の細分化・範囲追加による分母変更は記録する。総合集計と他作品は変更しない。",
   "evidenceNote": "参照先はローカルのステルスゲームプロジェクト。モデル・画像・ソース本体はこのリポジトリへアップロードしない。",
+  "excludedScope": [
+    "複数ステージへの拡張",
+    "戦闘・銃・敵撃破",
+    "オンライン機能",
+    "セーブ／ロード",
+    "鍵・サーバー制御・取得後の増援（採用未確定）"
+  ],
+  "categories": [
+    {
+      "id": "SPEC",
+      "title": "企画・完成条件・研究所設計"
+    },
+    {
+      "id": "BOOT",
+      "title": "環境・起動・ゲーム基盤"
+    },
+    {
+      "id": "INPUT",
+      "title": "入力管理・キーボード・パッド"
+    },
+    {
+      "id": "PLAYER",
+      "title": "プレイヤー移動・衝突・接地"
+    },
+    {
+      "id": "CAMERA",
+      "title": "三人称カメラ"
+    },
+    {
+      "id": "WORLD",
+      "title": "研究所・ワールド・配置データ"
+    },
+    {
+      "id": "AI",
+      "title": "敵の視覚・状態遷移・捕獲"
+    },
+    {
+      "id": "NAV",
+      "title": "経路探索・足音による認識"
+    },
+    {
+      "id": "MISSION",
+      "title": "情報回収・脱出・再挑戦"
+    },
+    {
+      "id": "MODEL",
+      "title": "モデル取り込み・モーション再生"
+    },
+    {
+      "id": "ART",
+      "title": "本番のステージ素材・表示"
+    },
+    {
+      "id": "DOOR",
+      "title": "扉・環境ギミック"
+    },
+    {
+      "id": "AUDIO",
+      "title": "音イベント・効果音・BGM"
+    },
+    {
+      "id": "UI",
+      "title": "HUD・タイトル・設定・操作案内"
+    },
+    {
+      "id": "TOOLS",
+      "title": "素材管理・再読み込み・配置エディター"
+    },
+    {
+      "id": "QA",
+      "title": "検証・調整・配布・提出資料"
+    }
+  ],
   "tasks": [
     {
-      "id": "SR-001",
+      "id": "SR2-001",
+      "category": "SPEC",
       "status": "done",
-      "title": "C++ / DxLibの初期化・終了と基本ゲームループ",
+      "title": "C++ / DxLibの採用決定",
+      "acceptance": "制作言語とライブラリが決まり、実プロジェクトで使用されている",
       "evidence": {
         "location": "local-game-project",
-        "path": "Main.cpp"
+        "path": "README.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-002",
+      "id": "SR2-002",
+      "category": "SPEC",
       "status": "done",
-      "title": "経過時間に基づく移動・斜め移動の正規化",
+      "title": "三人称ステルスの基本ゲームループ定義",
+      "acceptance": "潜入・情報回収・搬入口からの脱出が定義されている",
       "evidence": {
         "location": "local-game-project",
-        "path": "Main.cpp"
+        "path": "planning/研究所ステージ設計_v1.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-003",
+      "id": "SR2-003",
+      "category": "SPEC",
       "status": "done",
-      "title": "カメラ基準の通常移動・走行・忍び歩き",
+      "title": "情報回収とクリア条件の定義",
+      "acceptance": "回収後だけ出口で成功になる条件が実装と一致する",
       "evidence": {
         "location": "local-game-project",
-        "path": "Main.cpp"
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-004",
+      "id": "SR2-004",
+      "category": "SPEC",
       "status": "done",
-      "title": "三人称カメラの追従・回転・ズーム・遮蔽物回避",
+      "title": "捕獲・失敗条件の定義",
+      "acceptance": "追跡中の接近と遮蔽を含む捕獲条件が決まっている",
       "evidence": {
         "location": "local-game-project",
-        "path": "Main.cpp"
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-005",
+      "id": "SR2-005",
+      "category": "SPEC",
       "status": "done",
-      "title": "遮蔽物との衝突・壁沿いの移動・ステージ境界",
+      "title": "研究所の全体寸法と座標系定義",
+      "acceptance": "36×30mと設計座標からゲーム座標への変換が定まっている",
       "evidence": {
         "location": "local-game-project",
-        "path": "FoundationChecks.h"
+        "path": "planning/laboratory-stage-v1.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-006",
+      "id": "SR2-006",
+      "category": "SPEC",
       "status": "done",
-      "title": "プレイヤーMV1とテクスチャの読み込み",
+      "title": "9部屋の用途と配置設計",
+      "acceptance": "搬入口・実験室・保管庫・中枢・ホール・準備室・警備室・管理室・サーバー室が配置されている",
       "evidence": {
         "location": "local-game-project",
-        "path": "assets/Player/assassin/runtime/assassin.mv1"
+        "path": "planning/研究所ステージ設計_v1.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-007",
+      "id": "SR2-007",
+      "category": "SPEC",
       "status": "done",
-      "title": "プレイヤーの4モーションと切り替え補間",
+      "title": "左・中央・右の侵入経路案",
+      "acceptance": "それぞれの経路と危険の違いが記録されている",
       "evidence": {
         "location": "local-game-project",
-        "path": "ImportedMotion.h"
+        "path": "planning/研究所ステージ設計_v1.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-008",
+      "id": "SR2-008",
+      "category": "SPEC",
       "status": "done",
-      "title": "敵ロボットのMV1変換・敵用モーション生成",
+      "title": "回収後の復路案",
+      "acceptance": "帰路の例と来た道へ戻る選択肢が用意されている",
       "evidence": {
         "location": "local-game-project",
-        "path": "tools/build-enemy.ps1"
+        "path": "planning/laboratory-stage-v1.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-009",
+      "id": "SR2-009",
+      "category": "SPEC",
       "status": "done",
-      "title": "敵ごとの独立した待機・歩行・走行ポーズ",
+      "title": "G1・G2の巡回担当設計",
+      "acceptance": "中央と東側の担当範囲・巡回点が決まっている",
       "evidence": {
         "location": "local-game-project",
-        "path": "EnemyVisuals.h"
+        "path": "planning/laboratory-stage-v1.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
       }
     },
     {
-      "id": "SR-010",
-      "status": "done",
-      "title": "敵の巡回・視野角／距離判定・遮蔽",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StealthGameplay.h"
-      }
-    },
-    {
-      "id": "SR-011",
-      "status": "done",
-      "title": "足音の発生範囲・遮蔽物越しの減衰・聴覚反応",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StealthGameplay.h"
-      }
-    },
-    {
-      "id": "SR-012",
-      "status": "done",
-      "title": "敵の調査・追跡・見失い後の捜索・巡回復帰",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StealthGameplay.h"
-      }
-    },
-    {
-      "id": "SR-013",
-      "status": "done",
-      "title": "グリッド経路探索と遮蔽物の回り込み",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StealthGameplay.h"
-      }
-    },
-    {
-      "id": "SR-014",
-      "status": "done",
-      "title": "E長押しによる情報回収・回収前の脱出制限",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StealthGameplay.h"
-      }
-    },
-    {
-      "id": "SR-015",
-      "status": "done",
-      "title": "脱出成功・捕獲失敗・再挑戦・一時停止",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "Main.cpp"
-      }
-    },
-    {
-      "id": "SR-016",
-      "status": "done",
-      "title": "日本語HUD・ミニマップ・現在地・経過時間・発見回数",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StealthGameplay.h"
-      }
-    },
-    {
-      "id": "SR-017",
-      "status": "done",
-      "title": "研究所9部屋・12室内開口と搬入口・家具20個の仮組み",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "planning/laboratory-stage-v1.json"
-      }
-    },
-    {
-      "id": "SR-018",
-      "status": "done",
-      "title": "ステージ配置と見た目・判定の分離",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StageData.h"
-      }
-    },
-    {
-      "id": "SR-019",
-      "status": "done",
-      "title": "モデルの寸法・床位置・90度単位の配置回転への対応",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StageRenderer.h"
-      }
-    },
-    {
-      "id": "SR-020",
-      "status": "done",
-      "title": "種類キーからのモデル差し替え・不足時の仮形状表示",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "StageRenderer.h"
-      }
-    },
-    {
-      "id": "SR-021",
-      "status": "done",
-      "title": "F2俯瞰表示・F5再読み込みと失敗時の状態保持",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "Main.cpp"
-      }
-    },
-    {
-      "id": "SR-022",
-      "status": "done",
-      "title": "足音・発見・回収・結果の効果音イベント（素材未指定）",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "AudioBank.h"
-      }
-    },
-    {
-      "id": "SR-023",
-      "status": "done",
-      "title": "アセットの原本・実行用・検査結果のフォルダー分離",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "assets/README.md"
-      }
-    },
-    {
-      "id": "SR-024",
-      "status": "done",
-      "title": "モデルとモーションの再変換スクリプト・キャラ別割り当て",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "assets/Motion/source/clip-map.json"
-      }
-    },
-    {
-      "id": "SR-025",
-      "status": "done",
-      "title": "配置エディターの家具・巡回点編集と幾何警告",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "planning/output/editor-check.json"
-      }
-    },
-    {
-      "id": "SR-026",
-      "status": "done",
-      "title": "配置JSONの書き出し・形式検査・バックアップ付き取り込み",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "tools/import_stage.py"
-      }
-    },
-    {
-      "id": "SR-027",
-      "status": "done",
-      "title": "ビルドなしの実行用アセット同期",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "tools/sync-assets.ps1"
-      }
-    },
-    {
-      "id": "SR-028",
-      "status": "done",
-      "title": "基盤・AI・ミッション・モーション・差し替えの自動検査",
-      "evidence": {
-        "location": "local-game-project",
-        "path": "GameplayChecks.h"
-      }
-    },
-    {
-      "id": "SR-029",
+      "id": "SR2-010",
+      "category": "SPEC",
       "status": "in_progress",
-      "title": "既存モーションの足滑り・接地・切り替えの品質調整",
-      "note": "既存クリップの適用と補間は完了。接地IKの新規実装とは分けて調整する。"
+      "title": "最小完成範囲の最終固定",
+      "acceptance": "1ステージ作品として必須・保留・対象外の範囲を確定する",
+      "note": "基本ループは決定済み。最終品質と採用する追加機能の固定が残る"
     },
     {
-      "id": "SR-030",
+      "id": "SR2-011",
+      "category": "SPEC",
+      "status": "todo",
+      "title": "対象PC・解像度・性能目標の固定",
+      "acceptance": "確認対象機と最低FPS・メモリ等の基準を記録する"
+    },
+    {
+      "id": "SR2-012",
+      "category": "SPEC",
+      "status": "todo",
+      "title": "目標プレイ時間の固定",
+      "acceptance": "初見と慣れたプレイの目標時間を決める"
+    },
+    {
+      "id": "SR2-013",
+      "category": "SPEC",
+      "status": "todo",
+      "title": "経路ごとの危険度・難易度目標",
+      "acceptance": "各経路を選ぶ利点と許容する失敗頻度の目安を定める"
+    },
+    {
+      "id": "SR2-014",
+      "category": "SPEC",
       "status": "in_progress",
-      "title": "敵の巡回・追跡速度と経路ごとの難易度調整",
-      "note": "特定経路の自動プレイは成功。全経路の実操作による調整は未完了。"
+      "title": "本番のアート・視認性方針の固定",
+      "acceptance": "キャラ・室内材質・色・明るさの整合方針を定める",
+      "note": "プレイヤー・敵モデルは導入済み、ステージは仮形状"
     },
     {
-      "id": "SR-031",
+      "id": "SR2-015",
+      "category": "SPEC",
+      "status": "todo",
+      "title": "本番HUDに出す敵情報の仕様確定",
+      "acceptance": "確認用の視野・ミニマップ情報と製品側の表示を区別する"
+    },
+    {
+      "id": "SR2-016",
+      "category": "BOOT",
+      "status": "done",
+      "title": "Visual Studioプロジェクトの整備",
+      "acceptance": "v143・x64でC++プロジェクトをビルドできる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Dxlib_Basic_Seting.vcxproj",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-017",
+      "category": "BOOT",
+      "status": "done",
+      "title": "DxLibヘッダー・ライブラリの接続",
+      "acceptance": "DxLibをリンクして実行ファイルを生成できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Dxlib_Basic_Seting.vcxproj",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-018",
+      "category": "BOOT",
+      "status": "done",
+      "title": "DxLib初期化",
+      "acceptance": "初期化に成功して描画準備へ進める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-019",
+      "category": "BOOT",
+      "status": "done",
+      "title": "ウィンドウと描画領域の設定",
+      "acceptance": "試作用ウィンドウと1280×720の描画領域が設定される",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-020",
+      "category": "BOOT",
+      "status": "done",
+      "title": "メッセージ処理と基本ループ",
+      "acceptance": "終了要求まで更新・描画を繰り返せる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-021",
+      "category": "BOOT",
+      "status": "done",
+      "title": "更新処理と描画処理の呼び分け",
+      "acceptance": "Player更新と各描画が別の処理として呼ばれている",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-022",
+      "category": "BOOT",
+      "status": "done",
+      "title": "DeltaTimeの計測",
+      "acceptance": "経過時間を移動とゲーム進行へ渡せる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-023",
+      "category": "BOOT",
+      "status": "done",
+      "title": "極端なDeltaTimeの制限",
+      "acceptance": "長いフレームで移動量が過大にならない上限がある",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-024",
+      "category": "BOOT",
+      "status": "done",
+      "title": "フレーム待機処理",
+      "acceptance": "フレーム所要時間を基に待機できる。目標性能の達成とは別",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-025",
+      "category": "BOOT",
+      "status": "done",
+      "title": "実行ファイル基準のアセット参照",
+      "acceptance": "起動元の作業フォルダーに依存せずファイルを探せる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-026",
+      "category": "BOOT",
+      "status": "done",
+      "title": "UTF-8・日本語描画設定",
+      "acceptance": "日本語の部屋名とHUDを描画できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-027",
+      "category": "BOOT",
+      "status": "done",
+      "title": "プレイヤー読込失敗時の後始末",
+      "acceptance": "モデル・モーション失敗時に不要なモデルを解放して終了する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-028",
+      "category": "BOOT",
+      "status": "done",
+      "title": "通常終了時の資源解放",
+      "acceptance": "音・敵・モデル・DxLibを終了時に解放する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-029",
+      "category": "BOOT",
+      "status": "todo",
+      "title": "Gameクラスへの進行処理抽出",
+      "acceptance": "Mainに残る起動・更新・画面遷移を管理クラスへまとめる"
+    },
+    {
+      "id": "SR2-030",
+      "category": "BOOT",
+      "status": "todo",
+      "title": "責務単位の.h / .cpp分割",
+      "acceptance": "ヘッダー間の実装依存を整理し個別にコンパイルできる構成にする"
+    },
+    {
+      "id": "SR2-031",
+      "category": "BOOT",
       "status": "in_progress",
-      "title": "静的ステージモデルの取り込み手順・変換パイプライン",
-      "note": "差し替え口と共通MV1変換ツールは完成。静的FBXの一括取り込みは未接続。"
+      "title": "資源所有とRAIIの統一",
+      "acceptance": "所有権と失敗時の解放を一貫した方式で管理する",
+      "note": "音・ステージ・敵は所有クラス化済み、Player等は手動解放が残る"
     },
     {
-      "id": "SR-032",
+      "id": "SR2-032",
+      "category": "BOOT",
+      "status": "todo",
+      "title": "必須アセット不足時の利用者向け案内",
+      "acceptance": "モデル以外の必須データの欠落理由も表示して安全に終了する"
+    },
+    {
+      "id": "SR2-033",
+      "category": "INPUT",
+      "status": "done",
+      "title": "キーボード状態の取得",
+      "acceptance": "キー状態をフレーム単位で取得する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-034",
+      "category": "INPUT",
+      "status": "done",
+      "title": "WASDから移動軸への変換",
+      "acceptance": "反対方向の同時入力を含めて移動軸へ変換できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-035",
+      "category": "INPUT",
+      "status": "done",
+      "title": "Shift走行入力",
+      "acceptance": "Shiftの押下を走行指示として渡す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-036",
+      "category": "INPUT",
+      "status": "done",
+      "title": "Ctrl忍び歩き入力",
+      "acceptance": "Ctrlの押下を忍び歩き指示として渡す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-037",
+      "category": "INPUT",
+      "status": "done",
+      "title": "走行と忍び歩きの優先順位",
+      "acceptance": "ShiftとCtrlを同時に押した場合に忍び歩きを優先する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-038",
+      "category": "INPUT",
+      "status": "done",
+      "title": "右ドラッグの視点入力",
+      "acceptance": "右ボタン操作中だけマウス差分をカメラへ渡す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-039",
+      "category": "INPUT",
+      "status": "done",
+      "title": "マウスホイール入力",
+      "acceptance": "ホイール量をカメラ距離へ渡す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-040",
+      "category": "INPUT",
+      "status": "done",
+      "title": "E長押し入力の取得",
+      "acceptance": "押している間の状態をインタラクトへ渡す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-041",
+      "category": "INPUT",
+      "status": "done",
+      "title": "Rの押し始め判定",
+      "acceptance": "押し続けによる毎フレームのリセットを防ぐ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-042",
+      "category": "INPUT",
+      "status": "done",
+      "title": "Pの押し始め判定",
+      "acceptance": "一回の押下でポーズ状態を切り替える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-043",
+      "category": "INPUT",
+      "status": "done",
+      "title": "F2の押し始め判定",
+      "acceptance": "一回の押下で俯瞰と三人称を切り替える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-044",
+      "category": "INPUT",
+      "status": "done",
+      "title": "F5の押し始め判定",
+      "acceptance": "一回の押下で再読み込みを要求する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-045",
+      "category": "INPUT",
+      "status": "done",
+      "title": "非アクティブ時の入力抑制",
+      "acceptance": "別ウィンドウ操作で移動や視点入力が暴れない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-046",
+      "category": "INPUT",
+      "status": "done",
+      "title": "Escによる終了",
+      "acceptance": "通常プレイ中に終了できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-047",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "コントローラーの状態取得",
+      "acceptance": "対象パッドの接続・ボタン・スティックを取得する"
+    },
+    {
+      "id": "SR2-048",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "スティックのデッドゾーン",
+      "acceptance": "無操作時のドリフトを防いでアナログ入力へ変換する"
+    },
+    {
+      "id": "SR2-049",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "パッドでの移動・走行・忍び歩き",
+      "acceptance": "キーボードと同じ行動をパッドで実行する"
+    },
+    {
+      "id": "SR2-050",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "パッドでのカメラ操作",
+      "acceptance": "右スティックで回転・感度・上下制限が働く"
+    },
+    {
+      "id": "SR2-051",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "パッドでの決定・戻る・メニュー操作",
+      "acceptance": "タイトル・設定・ポーズを一通り操作できる"
+    },
+    {
+      "id": "SR2-052",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "入力方式に応じた案内切り替え",
+      "acceptance": "キーボードとパッドで操作表記を切り替える"
+    },
+    {
+      "id": "SR2-053",
+      "category": "INPUT",
+      "status": "todo",
+      "title": "入力設定・キー変更",
+      "acceptance": "割り当ての変更・保存・初期値復帰を行える"
+    },
+    {
+      "id": "SR2-054",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "プレイヤー位置・向きの管理",
+      "acceptance": "ゲーム上の位置と向きを保持できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-055",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "カメラ基準の前方・右方向計算",
+      "acceptance": "カメラの向きからワールド上の移動方向を求める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-056",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "斜め移動の速度正規化",
+      "acceptance": "斜めと直進で同じ移動速度になる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-057",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "通常歩行の移動",
+      "acceptance": "通常速度で床上を移動できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-058",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "走行の移動",
+      "acceptance": "走行速度へ切り替えて移動できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-059",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "忍び歩きの移動",
+      "acceptance": "通常より遅い速度へ切り替えて移動できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-060",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "経過時間に基づく移動量",
+      "acceptance": "固定フレーム数ではなく経過時間に比例して移動する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-061",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "移動方向への向き直り",
+      "acceptance": "移動方向へ回転を補間する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-062",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "遮蔽物との円形衝突",
+      "acceptance": "プレイヤー半径を考慮して家具・壁への侵入を防ぐ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-063",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "壁沿いのスライド",
+      "acceptance": "一方の軸が止まっても通れる方向へ移動する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-064",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "高速移動の分割判定",
+      "acceptance": "移動を小分けにし薄い壁のすり抜けを抑える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-065",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "研究所外への移動制限",
+      "acceptance": "ステージ寸法と半径に従って中心位置を制限する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-066",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "開始位置・向きへのリセット",
+      "acceptance": "再挑戦で設計データの開始地点へ戻る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-067",
+      "category": "PLAYER",
+      "status": "done",
+      "title": "モーションと水平移動の分離",
+      "acceptance": "表示クリップの水平移動でゲーム上の位置が二重に進まない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-068",
+      "category": "PLAYER",
+      "status": "todo",
+      "title": "重力による上下移動",
+      "acceptance": "床から離れたときに落下できる"
+    },
+    {
+      "id": "SR2-069",
+      "category": "PLAYER",
+      "status": "todo",
+      "title": "接地判定と床への復帰",
+      "acceptance": "足元の高さを判定し床上で安定する"
+    },
+    {
+      "id": "SR2-070",
+      "category": "PLAYER",
+      "status": "todo",
+      "title": "段差・斜面での移動",
+      "acceptance": "採用する段差高さ・傾斜の範囲を移動できる"
+    },
+    {
+      "id": "SR2-071",
+      "category": "PLAYER",
+      "status": "todo",
+      "title": "忍び姿勢の当たり判定",
+      "acceptance": "低い姿勢の表示に合わせて実際の高さを調整する"
+    },
+    {
+      "id": "SR2-072",
+      "category": "PLAYER",
       "status": "in_progress",
-      "title": "完成条件・対象PC・目標性能の最終仕様確定",
-      "note": "研究所1ステージの基本ループは確定。最終品質・性能基準の固定が残る。"
+      "title": "移動速度・回転の操作感調整",
+      "acceptance": "歩行・走行・忍び歩きの速度と向き直りを実操作で調整する",
+      "note": "仮数値で動作済み、実機による最終調整は未完了"
     },
     {
-      "id": "SR-033",
+      "id": "SR2-073",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "プレイヤーへの追従対象設定",
+      "acceptance": "プレイヤー上部をカメラの注視点にする",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-074",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "追従位置の補間",
+      "acceptance": "移動時の急な注視点変化を緩和する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-075",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "水平回転と角度の折り返し",
+      "acceptance": "左右の回転を連続して行える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-076",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "上下角度の制限",
+      "acceptance": "極端な見上げ・見下ろしを防ぐ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-077",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "ホイールでの距離変更",
+      "acceptance": "距離を変更し最小・最大範囲に収める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-078",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "近遠クリップと画角設定",
+      "acceptance": "研究所の寸法で必要な描画範囲を設定する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-079",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "カメラと遮蔽物の線分判定",
+      "acceptance": "壁・家具との交差位置を計算する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-080",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "遮蔽時のカメラ距離短縮",
+      "acceptance": "壁の裏側にカメラが出ないよう距離を縮める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-081",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "再挑戦時のカメラ初期化",
+      "acceptance": "開始地点を注視してカメラを戻す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-082",
+      "category": "CAMERA",
+      "status": "done",
+      "title": "俯瞰表示から三人称への復帰",
+      "acceptance": "F2を再度押すと通常の追従視点へ戻れる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-083",
+      "category": "CAMERA",
+      "status": "in_progress",
+      "title": "狭い部屋・通路でのカメラ調整",
+      "acceptance": "全通路でキャラと目的物を見失わず操作できる",
+      "note": "仮組みで交差回避は動作済み、実操作の調整が残る"
+    },
+    {
+      "id": "SR2-084",
+      "category": "CAMERA",
+      "status": "todo",
+      "title": "本番アセットとのカメラ干渉確認",
+      "acceptance": "家具・壁を置き換えた後も視界と距離が適切である"
+    },
+    {
+      "id": "SR2-085",
+      "category": "CAMERA",
+      "status": "todo",
+      "title": "カメラ感度・反転設定",
+      "acceptance": "ユーザーが感度と上下反転を設定できる"
+    },
+    {
+      "id": "SR2-086",
+      "category": "WORLD",
+      "status": "done",
+      "title": "設計JSONから実行用配置への変換",
+      "acceptance": "設計の変更からstageデータを再生成する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build_laboratory.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-087",
+      "category": "WORLD",
+      "status": "done",
+      "title": "設計座標からゲーム座標への変換",
+      "acceptance": "北西原点の座標をゲームのX・Zへ変換する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build_laboratory.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-088",
+      "category": "WORLD",
+      "status": "done",
+      "title": "部屋名と部屋領域の読み込み",
+      "acceptance": "9部屋のID・名前・寸法を保持する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-089",
+      "category": "WORLD",
+      "status": "done",
+      "title": "床の仮描画",
+      "acceptance": "9部屋の床を仮形状で表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-090",
+      "category": "WORLD",
+      "status": "done",
+      "title": "壁と12室内開口の生成",
+      "acceptance": "通路幅を空けて壁を配置する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build_laboratory.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-091",
+      "category": "WORLD",
+      "status": "done",
+      "title": "搬入口の開口生成",
+      "acceptance": "外周の入口だけに通行口を設ける",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build_laboratory.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-092",
+      "category": "WORLD",
+      "status": "done",
+      "title": "家具20個の仮配置",
+      "acceptance": "家具の位置・幅・奥行き・高さを設計データに持つ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/laboratory-stage-v1.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-093",
+      "category": "WORLD",
+      "status": "done",
+      "title": "家具の固定IDと種類キー",
+      "acceptance": "同じ配置をIDで識別しモデルの種類を別に指定する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-094",
+      "category": "WORLD",
+      "status": "done",
+      "title": "配置からの当たり判定生成",
+      "acceptance": "モデルの見た目によらず配置寸法から判定を作る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-095",
+      "category": "WORLD",
+      "status": "done",
+      "title": "遮蔽物の高さを使う視線判定",
+      "acceptance": "視線の高さと箱の高さで遮蔽を判定する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-096",
+      "category": "WORLD",
+      "status": "done",
+      "title": "開始・回収・脱出位置のデータ化",
+      "acceptance": "C++の固定座標へ埋め込まず配置から読み込む",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-097",
+      "category": "WORLD",
+      "status": "done",
+      "title": "敵の巡回点のデータ化",
+      "acceptance": "配置データから各敵の巡回経路を作る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-098",
+      "category": "WORLD",
+      "status": "done",
+      "title": "配置ファイルの基本形式・ID検査",
+      "acceptance": "不明な形式や重複IDなどを拒否する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-099",
+      "category": "WORLD",
+      "status": "done",
+      "title": "末尾レコードと件数検査",
+      "acceptance": "同期途中や欠けた配置ファイルを拒否する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-100",
+      "category": "WORLD",
+      "status": "done",
+      "title": "配置読み込みの確定・取り消し",
+      "acceptance": "読み込み失敗で以前の配置を壊さない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-101",
+      "category": "WORLD",
+      "status": "done",
+      "title": "ワールドの描画と判定の責務分離",
+      "acceptance": "モデル差し替えが衝突・視線の設定を変更しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-102",
+      "category": "AI",
+      "status": "done",
+      "title": "敵の位置・向き・状態の管理",
+      "acceptance": "個体ごとに位置と認識状態を保持する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-103",
+      "category": "AI",
+      "status": "done",
+      "title": "巡回点への移動と次点更新",
+      "acceptance": "順番に巡回し終点から繰り返す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-104",
+      "category": "AI",
+      "status": "done",
+      "title": "移動先への向き直り",
+      "acceptance": "敵の向きが移動方向へ追従する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-105",
+      "category": "AI",
+      "status": "done",
+      "title": "視認距離の判定",
+      "acceptance": "範囲外のプレイヤーを視認しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-106",
+      "category": "AI",
+      "status": "done",
+      "title": "視野角の判定",
+      "acceptance": "前方角度と内積で視野内を判定する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-107",
+      "category": "AI",
+      "status": "done",
+      "title": "背後のプレイヤーの視認除外",
+      "acceptance": "視覚では背後を検知しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-108",
+      "category": "AI",
+      "status": "done",
+      "title": "壁・家具による視覚遮蔽",
+      "acceptance": "遮蔽物越しに直接発見しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-109",
+      "category": "AI",
+      "status": "done",
+      "title": "警戒値の蓄積と減衰",
+      "acceptance": "見えている間に増え、見えなくなると減る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-110",
+      "category": "AI",
+      "status": "done",
+      "title": "警戒中の立ち止まり",
+      "acceptance": "見えている相手のそばを巡回し続けない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-111",
+      "category": "AI",
+      "status": "done",
+      "title": "発見閾値から追跡への遷移",
+      "acceptance": "警戒が閾値へ達すると追跡に入る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-112",
+      "category": "AI",
+      "status": "done",
+      "title": "最後に見た位置の記録",
+      "acceptance": "見失った後に追う場所を保持する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-113",
+      "category": "AI",
+      "status": "done",
+      "title": "追跡先への移動",
+      "acceptance": "追跡状態で最後の目撃地点へ向かう",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-114",
+      "category": "AI",
+      "status": "done",
+      "title": "見失い時間の管理",
+      "acceptance": "時間と到達状態で追跡を終了できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-115",
+      "category": "AI",
+      "status": "done",
+      "title": "捜索中の周囲確認",
+      "acceptance": "到達後に周囲を向き直りながら捜索する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-116",
+      "category": "AI",
+      "status": "done",
+      "title": "捜索終了後の巡回復帰",
+      "acceptance": "一定時間の捜索後に巡回へ戻る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-117",
+      "category": "AI",
+      "status": "done",
+      "title": "音の発生地点への調査状態",
+      "acceptance": "視認していない音へ調査移動できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-118",
+      "category": "AI",
+      "status": "done",
+      "title": "調査の到達・時間切れ処理",
+      "acceptance": "到達または時間切れで捜索へ移る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-119",
+      "category": "AI",
+      "status": "done",
+      "title": "距離と遮蔽を使う捕獲判定",
+      "acceptance": "追跡中の近距離でも壁越しには捕獲しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-120",
+      "category": "AI",
+      "status": "done",
+      "title": "敵2体の個別状態更新",
+      "acceptance": "片方の認識状態をもう片方へ混同しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-121",
+      "category": "AI",
+      "status": "in_progress",
+      "title": "視認距離・警戒時間の調整",
+      "acceptance": "部屋と復路に応じて発見の猶予を調整する",
+      "note": "仮数値で動作済み、全経路を実操作で評価していない"
+    },
+    {
+      "id": "SR2-122",
+      "category": "AI",
+      "status": "in_progress",
+      "title": "巡回・調査・追跡速度の調整",
+      "acceptance": "実操作で逃げ道と追跡の圧力を調整する",
+      "note": "特定経路の自動クリアは確認済み"
+    },
+    {
+      "id": "SR2-123",
+      "category": "AI",
+      "status": "todo",
+      "title": "忍び姿勢を反映する視認高さ",
+      "acceptance": "低い姿勢のキャラクターへ見る位置を合わせる"
+    },
+    {
+      "id": "SR2-124",
+      "category": "NAV",
+      "status": "done",
+      "title": "歩行可能グリッドの作成",
+      "acceptance": "当たり判定を基に通れるセルを求める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-125",
+      "category": "NAV",
+      "status": "done",
+      "title": "開始・目的地に近い有効点の選択",
+      "acceptance": "移動元と目標から接続できる点を選ぶ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-126",
+      "category": "NAV",
+      "status": "done",
+      "title": "幅優先の経路探索",
+      "acceptance": "隣接セルを調べて目的地への経路を求める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-127",
+      "category": "NAV",
+      "status": "done",
+      "title": "親情報からの経路復元",
+      "acceptance": "探索結果を移動用の点列へ戻す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-128",
+      "category": "NAV",
+      "status": "done",
+      "title": "直線で通れる区間の検査",
+      "acceptance": "プレイヤー半径を含めて区間を確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-129",
+      "category": "NAV",
+      "status": "done",
+      "title": "遮蔽物がある場合の経路移動",
+      "acceptance": "直進できない場合に回り込む",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-130",
+      "category": "NAV",
+      "status": "done",
+      "title": "移動中の経路更新間隔",
+      "acceptance": "毎フレーム不要な探索を繰り返さない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-131",
+      "category": "NAV",
+      "status": "done",
+      "title": "経路点の到達・進行管理",
+      "acceptance": "通過した点から次の点へ進める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-132",
+      "category": "NAV",
+      "status": "done",
+      "title": "経路が見つからない場合の停止",
+      "acceptance": "無効経路で壁へ突き抜けたり範囲外参照をしない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-133",
+      "category": "NAV",
+      "status": "done",
+      "title": "移動中の足音パルス生成",
+      "acceptance": "移動時の間隔に従って足音の判定を発生させる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-134",
+      "category": "NAV",
+      "status": "done",
+      "title": "歩行・走行・忍び歩きの音到達距離",
+      "acceptance": "行動によって音の届く範囲を変える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-135",
+      "category": "NAV",
+      "status": "done",
+      "title": "遮蔽物越しの聴覚減衰",
+      "acceptance": "壁越しの音の到達範囲を減衰させる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-136",
+      "category": "NAV",
+      "status": "done",
+      "title": "無音・停止中の音判定抑制",
+      "acceptance": "停止や小さい音で不必要な調査へ移らない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-137",
+      "category": "NAV",
+      "status": "done",
+      "title": "聴覚と実際の再生音の分離",
+      "acceptance": "音素材が無くてもAIの聴覚が動く",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-138",
+      "category": "NAV",
+      "status": "todo",
+      "title": "可動扉変更時の経路再評価",
+      "acceptance": "通行可能性が変わったら古い経路を使い続けない"
+    },
+    {
+      "id": "SR2-139",
+      "category": "MISSION",
+      "status": "done",
+      "title": "開始地点へのプレイヤー配置",
+      "acceptance": "ミッション開始時に設定された地点へ配置する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-140",
+      "category": "MISSION",
+      "status": "done",
+      "title": "回収端末の表示と目的地点",
+      "acceptance": "情報回収の対象をワールドに表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-141",
+      "category": "MISSION",
+      "status": "done",
+      "title": "端末との距離判定",
+      "acceptance": "範囲内だけで回収できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-142",
+      "category": "MISSION",
+      "status": "done",
+      "title": "E長押し時間の蓄積",
+      "acceptance": "指定時間押して回収を完了する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-143",
+      "category": "MISSION",
+      "status": "done",
+      "title": "範囲を離れた場合の回収リセット",
+      "acceptance": "途中で離れたら回収進行を戻す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-144",
+      "category": "MISSION",
+      "status": "done",
+      "title": "Eを離した場合の回収リセット",
+      "acceptance": "押していない間は回収を継続しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-145",
+      "category": "MISSION",
+      "status": "done",
+      "title": "回収済みフラグと重複回収抑制",
+      "acceptance": "回収後に同じ処理を再発火しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-146",
+      "category": "MISSION",
+      "status": "done",
+      "title": "回収前の出口制限",
+      "acceptance": "未回収のまま出口へ行っても成功しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-147",
+      "category": "MISSION",
+      "status": "done",
+      "title": "回収後の出口範囲判定",
+      "acceptance": "回収済みで出口に入ると成功する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-148",
+      "category": "MISSION",
+      "status": "done",
+      "title": "捕獲から失敗状態への遷移",
+      "acceptance": "捕獲されたら失敗へ移る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-149",
+      "category": "MISSION",
+      "status": "done",
+      "title": "結果後の通常進行停止",
+      "acceptance": "成功・失敗後に通常の移動や回収を続けない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-150",
+      "category": "MISSION",
+      "status": "done",
+      "title": "再挑戦時の敵・回収状態初期化",
+      "acceptance": "位置だけでなく敵とミッションも初期化する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-151",
+      "category": "MISSION",
+      "status": "done",
+      "title": "ポーズ中のミッション停止",
+      "acceptance": "敵・回収・経過時間を止める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-152",
+      "category": "MISSION",
+      "status": "done",
+      "title": "非アクティブ中の進行停止",
+      "acceptance": "別ウィンドウ操作中にゲームが進み続けない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-153",
+      "category": "MISSION",
+      "status": "done",
+      "title": "経過時間と発見回数の記録",
+      "acceptance": "プレイ中の結果用情報を蓄積する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-154",
+      "category": "MISSION",
+      "status": "todo",
+      "title": "タイトルからミッションへの開始導線",
+      "acceptance": "タイトルの開始操作で初期状態のミッションへ入る"
+    },
+    {
+      "id": "SR2-155",
+      "category": "MISSION",
+      "status": "todo",
+      "title": "結果からタイトルへの復帰",
+      "acceptance": "成功・失敗後にタイトルへ戻れる"
+    },
+    {
+      "id": "SR2-156",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤーMV1読み込み",
+      "acceptance": "既存のアサシンモデルをロードする",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-157",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤーテクスチャの参照修正",
+      "acceptance": "同梱テクスチャを参照して再読込できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/ModelCheck.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-158",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤーの寸法・向き補正",
+      "acceptance": "ゲーム内の高さと軸方向へ合わせる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-159",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵FBXからスキン付きX形式への変換",
+      "acceptance": "骨と重みを維持した中間モデルを出力する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/export_enemy_x.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-160",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵X形式からMV1への変換",
+      "acceptance": "DxLibで読んでMV1として保存できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/ModelConvert.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-161",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵の骨名・階層の維持",
+      "acceptance": "65本の対象骨を識別できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Enemy/robot/inspection/robot.bind.txt",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-162",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵のUV・ベースカラーの維持",
+      "acceptance": "元モデルと対応する色・形状を確認できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Enemy/robot/inspection/robot-preview.png",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-163",
+      "category": "MODEL",
+      "status": "done",
+      "title": "変換時の頂点共有",
+      "acceptance": "UV・法線境界を保って不要な頂点重複を減らす",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/export_enemy_x.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-164",
+      "category": "MODEL",
+      "status": "done",
+      "title": "モーションIDとアクション名の対応表",
+      "acceptance": "ソースの名前を変更しても設定から割り当てられる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Motion/source/clip-map.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-165",
+      "category": "MODEL",
+      "status": "done",
+      "title": "キャラクター別のモーション割り当て",
+      "acceptance": "敵の待機を変更してもプレイヤーへ影響させない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Motion/source/clip-map.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-166",
+      "category": "MODEL",
+      "status": "done",
+      "title": "対象モデルの骨長に合わせた変換",
+      "acceptance": "元モデルの形状・骨長を保持して姿勢を移す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/bake_player_motion.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-167",
+      "category": "MODEL",
+      "status": "done",
+      "title": "モーションの水平ルート移動除去",
+      "acceptance": "位置制御とアニメーション移動を二重適用しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/bake_player_motion.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-168",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤー待機クリップ",
+      "acceptance": "停止時に待機を再生できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-169",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤー歩行クリップ",
+      "acceptance": "通常移動で歩行を再生できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-170",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤー走行クリップ",
+      "acceptance": "走行で走行モーションを再生できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-171",
+      "category": "MODEL",
+      "status": "done",
+      "title": "プレイヤー忍び歩きクリップ",
+      "acceptance": "忍び歩きで低い姿勢の素材を再生できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-172",
+      "category": "MODEL",
+      "status": "done",
+      "title": "フレーム間の位置・回転補間",
+      "acceptance": "24fpsのデータをフレーム間で補間する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-173",
+      "category": "MODEL",
+      "status": "done",
+      "title": "クォータニオンの向き・正規化",
+      "acceptance": "回転補間で反転や無効な長さを防ぐ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-174",
+      "category": "MODEL",
+      "status": "done",
+      "title": "クリップ切り替え補間",
+      "acceptance": "移動状態の切り替えを瞬時の姿勢飛びにしない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-175",
+      "category": "MODEL",
+      "status": "done",
+      "title": "ループ端の姿勢補間",
+      "acceptance": "末尾と先頭の不連続を緩和する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-176",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵用クリップの生成",
+      "acceptance": "同じ素材を敵の骨格向けに変換する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Enemy/robot/runtime/motions/manifest.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-177",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵の待機・歩行・走行の切り替え",
+      "acceptance": "停止・巡回／調査・追跡の表示を切り替える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "EnemyVisuals.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-178",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵モデルの形状・テクスチャ共有",
+      "acceptance": "複製ハンドルで共通資源を再利用する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "EnemyVisuals.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-179",
+      "category": "MODEL",
+      "status": "done",
+      "title": "敵ごとのポーズ独立",
+      "acceptance": "一方のポーズ更新が別の敵へ影響しない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Enemy/robot/inspection/enemy-motion-check.txt",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-180",
+      "category": "MODEL",
+      "status": "done",
+      "title": "不正・不足したモーションデータの検査",
+      "acceptance": "骨名・長さ・フレーム・有限値などを検査する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-181",
+      "category": "MODEL",
+      "status": "in_progress",
+      "title": "クリップの足滑り調整",
+      "acceptance": "移動速度に対する足運びを調整する",
+      "note": "適用・補間は動作するが実操作での調整が残る"
+    },
+    {
+      "id": "SR2-182",
+      "category": "MODEL",
+      "status": "in_progress",
+      "title": "衣装・身体・手指の貫通調整",
+      "acceptance": "使用する姿勢で目立つ貫通を確認し修正する",
+      "note": "基礎の描画を確認済み、本番品質は未完了"
+    },
+    {
+      "id": "SR2-183",
+      "category": "MODEL",
+      "status": "todo",
+      "title": "足の接地IK",
+      "acceptance": "床の高さへ足先を補正できる"
+    },
+    {
+      "id": "SR2-184",
+      "category": "ART",
+      "status": "done",
+      "title": "種類キーからモデルを選択",
+      "acceptance": "同じ種類の配置へ対応モデルを割り当てる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-185",
+      "category": "ART",
+      "status": "done",
+      "title": "モデルの寸法取得",
+      "acceptance": "モデルの境界からサイズと中心を求める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-186",
+      "category": "ART",
+      "status": "done",
+      "title": "縦横比を保つ配置",
+      "acceptance": "配置枠内に形状の比率を保って収める",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-187",
+      "category": "ART",
+      "status": "done",
+      "title": "各軸を配置枠へ合わせる伸縮",
+      "acceptance": "壁や床などを設定寸法へ合わせる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-188",
+      "category": "ART",
+      "status": "done",
+      "title": "底面と配置中心の補正",
+      "acceptance": "モデルの元原点によらず床上に合わせる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-189",
+      "category": "ART",
+      "status": "done",
+      "title": "90度単位の配置方向",
+      "acceptance": "回転後の幅・奥行きを考慮して配置する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-190",
+      "category": "ART",
+      "status": "done",
+      "title": "不足モデルの代替表示",
+      "acceptance": "任意モデルが無い場合は仮形状を使う",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-191",
+      "category": "ART",
+      "status": "in_progress",
+      "title": "静的FBXモデルの取り込み手順",
+      "acceptance": "原本と付属素材を保持して実行用モデルへ変換できる",
+      "note": "共通変換ツールと差し替え口はあるが静的FBX一括取り込みは未接続"
+    },
+    {
+      "id": "SR2-192",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の床モデル・材質",
+      "acceptance": "床の全配置を本番素材へ置き換え見た目と高さを確認する"
+    },
+    {
+      "id": "SR2-193",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の壁モデル・材質",
+      "acceptance": "開口幅を保って壁を本番素材へ置き換える"
+    },
+    {
+      "id": "SR2-194",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の資材箱モデル",
+      "acceptance": "搬入口の箱を素材へ置き換え衝突寸法を合わせる"
+    },
+    {
+      "id": "SR2-195",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の実験台モデル",
+      "acceptance": "実験室と研究室の台を素材へ置き換える"
+    },
+    {
+      "id": "SR2-196",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の保管棚モデル",
+      "acceptance": "保管庫の棚を素材へ置き換える"
+    },
+    {
+      "id": "SR2-197",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番のロッカーモデル",
+      "acceptance": "準備室のロッカーを素材へ置き換える"
+    },
+    {
+      "id": "SR2-198",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の机モデル",
+      "acceptance": "警備室・管理室の机を素材へ置き換える"
+    },
+    {
+      "id": "SR2-199",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番のサーバーラックモデル",
+      "acceptance": "サーバー室のラックを素材へ置き換える"
+    },
+    {
+      "id": "SR2-200",
+      "category": "ART",
+      "status": "todo",
+      "title": "本番の回収端末モデル",
+      "acceptance": "操作対象として識別できる本番端末へ置き換える"
+    },
+    {
+      "id": "SR2-201",
+      "category": "ART",
+      "status": "todo",
+      "title": "可動扉のモデル・材質",
+      "acceptance": "開閉処理へ接続できる向きと原点を持つ素材を用意する"
+    },
+    {
+      "id": "SR2-202",
+      "category": "ART",
+      "status": "todo",
+      "title": "天井モデル・材質",
+      "acceptance": "カメラ制御と整合する天井を配置する"
+    },
+    {
+      "id": "SR2-203",
+      "category": "ART",
+      "status": "todo",
+      "title": "室名・誘導サイン",
+      "acceptance": "入口・研究室・出口を識別する表示を配置する"
+    },
+    {
+      "id": "SR2-204",
+      "category": "ART",
+      "status": "todo",
+      "title": "室内照明",
+      "acceptance": "研究所の視認性と誘導を意図した照明を配置する"
+    },
+    {
+      "id": "SR2-205",
+      "category": "ART",
+      "status": "todo",
+      "title": "影の導入",
+      "acceptance": "必要な対象へ影を付けて接地感と負荷を確認する"
+    },
+    {
+      "id": "SR2-206",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "扉へのインタラクト判定",
+      "acceptance": "端末と競合せず近くの扉を操作できる"
+    },
+    {
+      "id": "SR2-207",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "扉の開閉状態・遷移",
+      "acceptance": "操作と表示状態を一致させる"
+    },
+    {
+      "id": "SR2-208",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "扉の開閉に連動する当たり判定",
+      "acceptance": "開閉状態に合わせて通行可否を変更する"
+    },
+    {
+      "id": "SR2-209",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "扉の開閉に連動する視線判定",
+      "acceptance": "閉じた扉と開いた扉で見通しを更新する"
+    },
+    {
+      "id": "SR2-210",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "扉の開閉に連動するカメラ判定",
+      "acceptance": "開閉によるカメラの貫通を防ぐ"
+    },
+    {
+      "id": "SR2-211",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "プレイヤーを挟まない閉扉処理",
+      "acceptance": "キャラクターと重なったまま扉を閉じない"
+    },
+    {
+      "id": "SR2-212",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "敵の扉通過方針と実装",
+      "acceptance": "巡回・追跡中に扉で停止し続けない方針を接続する"
+    },
+    {
+      "id": "SR2-213",
+      "category": "DOOR",
+      "status": "todo",
+      "title": "天井によるカメラ遮蔽の制御",
+      "acceptance": "天井を導入してもキャラクターを見失わない"
+    },
+    {
+      "id": "SR2-214",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "効果音の種類キー対応表",
+      "acceptance": "イベントごとにファイルと音量を指定する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Audio/runtime/sounds.catalog",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-215",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "音素材の読み込み・解放",
+      "acceptance": "指定された素材を読み終了時に解放する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-216",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "音量値の範囲検査",
+      "acceptance": "不正な音量設定を拒否する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-217",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "未指定・欠損音の無音継続",
+      "acceptance": "音素材不足だけでゲーム判定を止めない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-218",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "通常歩行の音イベント",
+      "acceptance": "足音パルスで歩行音のキーを選ぶ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-219",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "走行の音イベント",
+      "acceptance": "走行時の足音キーを選ぶ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-220",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "忍び歩きの音イベント",
+      "acceptance": "忍び歩き時のキーを優先して選ぶ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-221",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "発見時の一回音イベント",
+      "acceptance": "新たな追跡開始時だけ通知する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-222",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "回収完了の一回音イベント",
+      "acceptance": "データ取得の瞬間だけ通知する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-223",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "成功・失敗の一回音イベント",
+      "acceptance": "結果の状態変化時だけ通知する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-224",
+      "category": "AUDIO",
+      "status": "done",
+      "title": "停止・ポーズ時の足音抑制",
+      "acceptance": "移動していない時や停止中は足音イベントを出さない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-225",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "通常歩行の足音素材",
+      "acceptance": "素材を接続し連続再生時の長さと音量を確認する"
+    },
+    {
+      "id": "SR2-226",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "走行の足音素材",
+      "acceptance": "走行間隔で素材を再生し聞き分けられるようにする"
+    },
+    {
+      "id": "SR2-227",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "忍び歩きの足音素材",
+      "acceptance": "忍び歩きの音量と間隔に合う素材を接続する"
+    },
+    {
+      "id": "SR2-228",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "発見・警戒の効果音素材",
+      "acceptance": "発見状態が聞き取れる素材を接続する"
+    },
+    {
+      "id": "SR2-229",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "回収の効果音素材",
+      "acceptance": "回収完了を通知する素材を接続する"
+    },
+    {
+      "id": "SR2-230",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "成功・失敗の効果音素材",
+      "acceptance": "結果に対応した素材を接続する"
+    },
+    {
+      "id": "SR2-231",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "BGMの読み込み・再生",
+      "acceptance": "プレイ中のBGMを再生する"
+    },
+    {
+      "id": "SR2-232",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "BGMのループ・停止・遷移",
+      "acceptance": "ポーズ・結果・画面遷移で破綻しないよう制御する"
+    },
+    {
+      "id": "SR2-233",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "立体音響と距離減衰",
+      "acceptance": "音源位置と距離に応じて実際の音を変える"
+    },
+    {
+      "id": "SR2-234",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "敵自身の足音",
+      "acceptance": "敵の移動に同期する音で接近を把握できる"
+    },
+    {
+      "id": "SR2-235",
+      "category": "AUDIO",
+      "status": "todo",
+      "title": "実機での全体音量調整",
+      "acceptance": "音割れや通知音の埋もれを聴感で確認する"
+    },
+    {
+      "id": "SR2-236",
+      "category": "UI",
+      "status": "done",
+      "title": "目的の表示切り替え",
+      "acceptance": "回収前と回収後で目的の案内を変える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-237",
+      "category": "UI",
+      "status": "done",
+      "title": "回収範囲の操作案内",
+      "acceptance": "対象付近でE長押しを案内する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-238",
+      "category": "UI",
+      "status": "done",
+      "title": "回収進行の表示",
+      "acceptance": "長押しの進行をバーで表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-239",
+      "category": "UI",
+      "status": "done",
+      "title": "敵の警戒・追跡・捜索表示",
+      "acceptance": "現在の認識状態をHUDへ表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-240",
+      "category": "UI",
+      "status": "done",
+      "title": "警戒ゲージ",
+      "acceptance": "警戒の蓄積を画面上で確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-241",
+      "category": "UI",
+      "status": "done",
+      "title": "ミニマップの壁・家具",
+      "acceptance": "配置から地形を表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-242",
+      "category": "UI",
+      "status": "done",
+      "title": "ミニマップのプレイヤー位置・向き",
+      "acceptance": "自分の位置と進行方向を表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-243",
+      "category": "UI",
+      "status": "done",
+      "title": "ミニマップの敵・確認用視野",
+      "acceptance": "開発用に敵の位置と視野を確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-244",
+      "category": "UI",
+      "status": "done",
+      "title": "回収地点・出口・現在目標の印",
+      "acceptance": "目的となる場所を識別する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-245",
+      "category": "UI",
+      "status": "done",
+      "title": "現在地の部屋名表示",
+      "acceptance": "所属する部屋のIDと名前を表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-246",
+      "category": "UI",
+      "status": "done",
+      "title": "経過時間・発見回数の表示",
+      "acceptance": "進行状況を画面で確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-247",
+      "category": "UI",
+      "status": "done",
+      "title": "成功・失敗の結果画面",
+      "acceptance": "結果と再挑戦の案内を表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-248",
+      "category": "UI",
+      "status": "done",
+      "title": "ポーズ画面",
+      "acceptance": "停止状態と再開方法を表示する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-249",
+      "category": "UI",
+      "status": "done",
+      "title": "再読み込み成功・失敗の通知",
+      "acceptance": "反映できたかを利用者へ知らせる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-250",
+      "category": "UI",
+      "status": "todo",
+      "title": "タイトル画面",
+      "acceptance": "起動後の開始・設定・終了の導線を用意する"
+    },
+    {
+      "id": "SR2-251",
+      "category": "UI",
+      "status": "todo",
+      "title": "メニューからの開始・終了",
+      "acceptance": "タイトルの選択から安全に開始・終了できる"
+    },
+    {
+      "id": "SR2-252",
+      "category": "UI",
+      "status": "todo",
+      "title": "ゲーム内音量設定",
+      "acceptance": "全体音量や必要な音の音量を変更する"
+    },
+    {
+      "id": "SR2-253",
+      "category": "UI",
+      "status": "todo",
+      "title": "画面・解像度設定",
+      "acceptance": "必要な表示設定を選べるようにする"
+    },
+    {
+      "id": "SR2-254",
+      "category": "UI",
+      "status": "todo",
+      "title": "操作・カメラ設定画面",
+      "acceptance": "感度などの入力設定を変更する"
+    },
+    {
+      "id": "SR2-255",
+      "category": "UI",
+      "status": "todo",
+      "title": "設定の保存・初期値復帰",
+      "acceptance": "再起動後も設定を保持し初期値へ戻せる"
+    },
+    {
+      "id": "SR2-256",
+      "category": "UI",
+      "status": "todo",
+      "title": "初回操作チュートリアル",
+      "acceptance": "現在のHUDとは別に初見の操作・目的を案内する"
+    },
+    {
+      "id": "SR2-257",
+      "category": "UI",
+      "status": "todo",
+      "title": "本番HUDと開発表示の切り替え",
+      "acceptance": "開発用の敵情報を本番表示から分離する"
+    },
+    {
+      "id": "SR2-258",
+      "category": "UI",
+      "status": "in_progress",
+      "title": "本番UIのレイアウト・可読性調整",
+      "acceptance": "本番素材・表示設定で文字や通知の重なりを調整する",
+      "note": "仮HUDと日本語表示は動作済み"
+    },
+    {
+      "id": "SR2-259",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "種類別のアセットフォルダー",
+      "acceptance": "Player・Enemy・Motion・Stage・Audioへ分類する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/README.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-260",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "原本・実行用・確認結果の分離",
+      "acceptance": "原本を保持し生成物を混在させない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/README.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-261",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "有効モーション原本と過去素材の分離",
+      "acceptance": "使用中のBlender原本とlegacyのFBXを区別する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Motion/README.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-262",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "ゲーム内の参照先集約",
+      "acceptance": "起動用の主要ファイルパスを一か所で管理する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AssetPaths.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-263",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "敵モデル・モーションの一括再生成",
+      "acceptance": "変換失敗で止まり対象骨格用のデータを生成する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build-enemy.ps1",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-264",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "実行用アセットの同期",
+      "acceptance": "C++をビルドせず実行フォルダーへコピーする",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/sync-assets.ps1",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-265",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "配置更新時の実行用データ生成",
+      "acceptance": "JSONからゲーム用データを作る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build_laboratory.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-266",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "F2の部屋名付き俯瞰",
+      "acceptance": "研究所全体と現在の配置を確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-267",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "F5のステージ・表示・敵再読み込み",
+      "acceptance": "新しい資源を準備してから開始地点へ切り替える",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-268",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "失敗時に旧資源を維持する再読み込み",
+      "acceptance": "準備途中の失敗で現在の表示を壊さない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-269",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "配置エディターの部屋・壁・家具表示",
+      "acceptance": "現在のJSONから編集画面を再生成する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-270",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "配置エディターの家具選択",
+      "acceptance": "画面と一覧から対象IDを選べる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-271",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "家具のドラッグ・スナップ移動",
+      "acceptance": "0.25m刻みの実ドラッグを確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-272",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "家具の寸法・高さ・種類キー編集",
+      "acceptance": "表示と書き出す値へ編集を反映する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-273",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "家具の配置方向編集",
+      "acceptance": "90度単位の向きを指定できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-274",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "家具の追加・複製・削除",
+      "acceptance": "件数とIDを正しく更新する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-275",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "編集の取り消し",
+      "acceptance": "移動・複製・削除を以前のデータへ戻せる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-276",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "巡回点の選択・数値編集",
+      "acceptance": "対象の警備員と巡回点を編集する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-277",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "巡回点のドラッグ",
+      "acceptance": "実ポインター操作で巡回点を移動できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-278",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "閉じた経路の始終点連動",
+      "acceptance": "始点変更で閉じる終点も同じ位置へ更新する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-279",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "壁・家具・通路の幾何警告",
+      "acceptance": "重なりや塞がった通路を検出する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-280",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "往復経路・巡回点の通行警告",
+      "acceptance": "範囲外や通れない点・区間を利用者へ知らせる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/laboratory-editor.template.html",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-281",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "編集内容のJSON書き出し",
+      "acceptance": "復元後に書き出した内容が原本と一致する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-282",
+      "category": "TOOLS",
+      "status": "in_progress",
+      "title": "編集画面への任意JSON読み込み",
+      "acceptance": "不正なファイルで現在の編集内容を壊さず正しいファイルを開く",
+      "note": "ファイル選択・読込処理は実装、任意ファイルの実UI確認が残る"
+    },
+    {
+      "id": "SR2-283",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "CLI取り込みの形式検査",
+      "acceptance": "不正ID・寸法・構造を検査する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/import_stage.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-284",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "取り込み前の原本バックアップ",
+      "acceptance": "変更前のバイト列を別ファイルへ保持する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/import_stage.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-285",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "取り込み失敗時の原本復元",
+      "acceptance": "生成失敗で以前の配置へ戻す",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/import_stage.py",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-286",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "編集画面の狭幅対応",
+      "acceptance": "1280pxと390pxで横はみ出しを起こさない",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-287",
+      "category": "TOOLS",
+      "status": "done",
+      "title": "素材差し替え・編集手順書",
+      "acceptance": "編集・取り込み・同期・再読み込みを手順化する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/配置エディターの使い方.md",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-288",
+      "category": "QA",
+      "status": "done",
+      "title": "移動・衝突・カメラの自動検査",
+      "acceptance": "基本動作の回帰を検査できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-289",
+      "category": "QA",
+      "status": "done",
+      "title": "視覚・聴覚・状態遷移の自動検査",
+      "acceptance": "認識と復帰の基本ケースを検査できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-290",
+      "category": "QA",
+      "status": "done",
+      "title": "回収・出口制限・捕獲の自動検査",
+      "acceptance": "ミッション状態の基本ケースを検査できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-291",
+      "category": "QA",
+      "status": "done",
+      "title": "特定経路の自動プレイスルー",
+      "acceptance": "左側経路でAI・衝突を通して回収・脱出に成功する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "x64/Debug/laboratory-check.txt",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-292",
+      "category": "QA",
+      "status": "done",
+      "title": "研究所の接続・巡回区間の検査",
+      "acceptance": "9部屋・開口・巡回の通行を検査できる",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-293",
+      "category": "QA",
+      "status": "done",
+      "title": "モデル差し替えと判定不変の検査",
+      "acceptance": "寸法・床位置・回転と判定維持を確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "x64/Debug/asset-replacement-check.txt",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-294",
+      "category": "QA",
+      "status": "done",
+      "title": "敵モーション・個体分離の検査",
+      "acceptance": "骨長・有限値・個体別ポーズを確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "x64/Debug/enemy-motion-check.txt",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-295",
+      "category": "QA",
+      "status": "done",
+      "title": "効果音イベントの自動検査",
+      "acceptance": "選択と一回発火・無音時の継続を確認する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "x64/Debug/audio-event-check.txt",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-296",
+      "category": "QA",
+      "status": "done",
+      "title": "エディターの実ドラッグ・取り消し検査",
+      "acceptance": "家具と巡回点の実操作経路を検査する",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/check-editor.mjs",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-297",
+      "category": "QA",
+      "status": "done",
+      "title": "JSON書き出し・取り込みの整合検査",
+      "acceptance": "書き出した配置が元へ戻り形式検査を通る",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/check-editor.ps1",
+        "scope": "現時点の基礎実装・記録確認。本番品質や最終実機検証は別タスク。"
+      }
+    },
+    {
+      "id": "SR2-298",
+      "category": "QA",
       "status": "in_progress",
       "title": "最新Release版の起動・回帰検証",
-      "note": "ビルド成功。最新バイナリはWindowsアプリ制御で起動を確認できていない。"
+      "acceptance": "現在のコードと素材を組み合わせたReleaseで回帰検査を通す",
+      "note": "ビルド成功。Windowsアプリ制御により最新実行ファイルの確認が未完了"
     },
     {
-      "id": "SR-034",
+      "id": "SR2-299",
+      "category": "QA",
       "status": "todo",
-      "title": "本番の壁モデル・材質を配置へ接続"
+      "title": "キーボード・マウスの実通しプレイ",
+      "acceptance": "開始から回収・脱出・失敗・再挑戦まで実機入力で確認する"
     },
     {
-      "id": "SR-035",
+      "id": "SR2-300",
+      "category": "QA",
       "status": "todo",
-      "title": "本番の床モデル・材質を配置へ接続"
+      "title": "パッドの実通しプレイ",
+      "acceptance": "同じループを対象コントローラーで確認する"
     },
     {
-      "id": "SR-036",
+      "id": "SR2-301",
+      "category": "QA",
       "status": "todo",
-      "title": "本番の実験台モデルを配置へ接続"
+      "title": "全経路の難易度・初見評価",
+      "acceptance": "左・中央・右と復路を人のプレイで確認する"
     },
     {
-      "id": "SR-037",
+      "id": "SR2-302",
+      "category": "QA",
       "status": "todo",
-      "title": "本番の保管棚モデルを配置へ接続"
+      "title": "CPU負荷の測定・調整",
+      "acceptance": "対象PCでAIと更新の負荷を測り基準へ収める"
     },
     {
-      "id": "SR-038",
+      "id": "SR2-303",
+      "category": "QA",
       "status": "todo",
-      "title": "本番のロッカーモデルを配置へ接続"
+      "title": "GPU負荷の測定・調整",
+      "acceptance": "本番素材・影・描画時の負荷を測り基準へ収める"
     },
     {
-      "id": "SR-039",
+      "id": "SR2-304",
+      "category": "QA",
       "status": "todo",
-      "title": "本番の机モデルを配置へ接続"
+      "title": "メモリ使用量・読み込み負荷の測定",
+      "acceptance": "モデル・テクスチャ・生成物の使用量を測る"
     },
     {
-      "id": "SR-040",
+      "id": "SR2-305",
+      "category": "QA",
       "status": "todo",
-      "title": "本番のサーバーラックモデルを配置へ接続"
+      "title": "フレーム時間と急な停止の確認",
+      "acceptance": "平均FPSだけでなく遅いフレームを調整する"
     },
     {
-      "id": "SR-041",
+      "id": "SR2-306",
+      "category": "QA",
       "status": "todo",
-      "title": "歩行・走行・忍び歩きの実際の足音素材を接続",
-      "note": "イベントの発生口とは別に素材と音量を確認する。"
+      "title": "長時間プレイと反復再挑戦",
+      "acceptance": "時間経過や繰り返しで状態や資源が壊れない"
     },
     {
-      "id": "SR-042",
+      "id": "SR2-307",
+      "category": "QA",
       "status": "todo",
-      "title": "発見・回収・成功・失敗の実際の効果音素材を接続",
-      "note": "イベントの発生口とは別に素材と聴感を確認する。"
+      "title": "必須アセット欠損の最終確認",
+      "acceptance": "欠損・破損時に利用者が原因を理解し安全に終了できる"
     },
     {
-      "id": "SR-043",
+      "id": "SR2-308",
+      "category": "QA",
       "status": "todo",
-      "title": "BGMの導入と再生制御"
+      "title": "本番アセット交換後の全回帰",
+      "acceptance": "置き換えたモデル・音・配置で基本機能を再確認する"
     },
     {
-      "id": "SR-044",
+      "id": "SR2-309",
+      "category": "QA",
       "status": "todo",
-      "title": "立体音響・距離減衰の導入",
-      "note": "現在の効果音バンクは2D。AIの聴覚とは別。"
+      "title": "素材の利用条件・出典整理",
+      "acceptance": "配布可能な素材と必要な表示を確認する"
     },
     {
-      "id": "SR-045",
+      "id": "SR2-310",
+      "category": "QA",
       "status": "todo",
-      "title": "可動扉と衝突・視線・経路探索の連動"
+      "title": "配布物の依存ファイル整理",
+      "acceptance": "実行に必要なモデル・音・設定を漏れなく含める"
     },
     {
-      "id": "SR-046",
+      "id": "SR2-311",
+      "category": "QA",
       "status": "todo",
-      "title": "天井と三人称カメラの表示制御"
+      "title": "開発環境外での起動確認",
+      "acceptance": "開発フォルダーに依存しない環境で起動する"
     },
     {
-      "id": "SR-047",
+      "id": "SR2-312",
+      "category": "QA",
       "status": "todo",
-      "title": "段差・重力に対応した移動"
+      "title": "配布用ビルド・成果物固定",
+      "acceptance": "検証済みの実行物と同梱データを固定する"
     },
     {
-      "id": "SR-048",
+      "id": "SR2-313",
+      "category": "QA",
       "status": "todo",
-      "title": "足の接地IKの実装",
-      "note": "既存クリップの調整タスクとは別の新規機能。"
+      "title": "プレイヤー向け操作説明",
+      "acceptance": "配布物だけで基本操作と目的が分かるようにする"
     },
     {
-      "id": "SR-049",
+      "id": "SR2-314",
+      "category": "QA",
       "status": "todo",
-      "title": "タイトル・開始・終了メニュー"
+      "title": "ポートフォリオ用の構成説明",
+      "acceptance": "担当範囲・技術・制限を説明できる資料を整える"
     },
     {
-      "id": "SR-050",
+      "id": "SR2-315",
+      "category": "QA",
       "status": "todo",
-      "title": "ゲーム内の設定画面と設定保存",
-      "note": "素材対応表の固定音量設定とは別。"
-    },
-    {
-      "id": "SR-051",
-      "status": "todo",
-      "title": "初回の操作チュートリアル",
-      "note": "現在の開発用HUDの操作案内とは別。"
-    },
-    {
-      "id": "SR-052",
-      "status": "todo",
-      "title": "コントローラー入力と案内表示"
-    },
-    {
-      "id": "SR-053",
-      "status": "todo",
-      "title": "実機操作で回収から脱出までの通しプレイ確認",
-      "note": "自動シミュレーションの成功とは分けて確認する。"
-    },
-    {
-      "id": "SR-054",
-      "status": "todo",
-      "title": "長時間動作・CPU／GPU／メモリ／FPSの測定と調整"
-    },
-    {
-      "id": "SR-055",
-      "status": "todo",
-      "title": "素材の出典・利用条件の整理"
-    },
-    {
-      "id": "SR-056",
-      "status": "todo",
-      "title": "依存物を含む配布用ビルド・最終確認",
-      "note": "開発中Release版の起動確認とは別に配布物として検証する。"
-    },
-    {
-      "id": "SR-057",
-      "status": "todo",
-      "title": "照明・影の導入と見やすさの調整"
-    },
-    {
-      "id": "SR-058",
-      "status": "todo",
-      "title": "忍び姿勢に合わせた視認高さ・当たり判定の調整",
-      "note": "現在は低い姿勢の表示でも判定の高さは従来のまま。"
+      "title": "最終の実演画像・動画",
+      "acceptance": "実プレイで成果と操作を示す資料を用意する"
     }
-  ]
+  ],
+  "auditNote": "ドラフトの汎用「動的遮蔽物反映」1件は扉・経路更新の明細と重複するため除外。316ではなく315件を第2版の確定基準とする。"
 }

@@ -1,0 +1,426 @@
+{
+  "project": "研究所ステルスゲーム（仮題：SHADOW ROUTE）",
+  "updated": "2026-10-25",
+  "baseline": "研究所1ステージの潜入・情報回収・脱出を遊べるWindows用三人称ゲーム",
+  "countingRule": "doneのみ完了として1件。in_progressとtodoは完了に含めない。作業量加重やゲーム品質の完成率ではない。週報作成自体はタスク数へ加算しない。",
+  "maintenance": "IDを固定し、状態と確認根拠を更新する。範囲追加時は末尾へ追加し、分母変更を報告する。総合集計は担当しない。",
+  "evidenceNote": "参照先はローカルのステルスゲームプロジェクト。モデル・画像・ソース本体はこのリポジトリへアップロードしない。",
+  "tasks": [
+    {
+      "id": "SR-001",
+      "status": "done",
+      "title": "C++ / DxLibの初期化・終了と基本ゲームループ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp"
+      }
+    },
+    {
+      "id": "SR-002",
+      "status": "done",
+      "title": "経過時間に基づく移動・斜め移動の正規化",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp"
+      }
+    },
+    {
+      "id": "SR-003",
+      "status": "done",
+      "title": "カメラ基準の通常移動・走行・忍び歩き",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp"
+      }
+    },
+    {
+      "id": "SR-004",
+      "status": "done",
+      "title": "三人称カメラの追従・回転・ズーム・遮蔽物回避",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp"
+      }
+    },
+    {
+      "id": "SR-005",
+      "status": "done",
+      "title": "遮蔽物との衝突・壁沿いの移動・ステージ境界",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "FoundationChecks.h"
+      }
+    },
+    {
+      "id": "SR-006",
+      "status": "done",
+      "title": "プレイヤーMV1とテクスチャの読み込み",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Player/assassin/runtime/assassin.mv1"
+      }
+    },
+    {
+      "id": "SR-007",
+      "status": "done",
+      "title": "プレイヤーの4モーションと切り替え補間",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "ImportedMotion.h"
+      }
+    },
+    {
+      "id": "SR-008",
+      "status": "done",
+      "title": "敵ロボットのMV1変換・敵用モーション生成",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/build-enemy.ps1"
+      }
+    },
+    {
+      "id": "SR-009",
+      "status": "done",
+      "title": "敵ごとの独立した待機・歩行・走行ポーズ",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "EnemyVisuals.h"
+      }
+    },
+    {
+      "id": "SR-010",
+      "status": "done",
+      "title": "敵の巡回・視野角／距離判定・遮蔽",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h"
+      }
+    },
+    {
+      "id": "SR-011",
+      "status": "done",
+      "title": "足音の発生範囲・遮蔽物越しの減衰・聴覚反応",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h"
+      }
+    },
+    {
+      "id": "SR-012",
+      "status": "done",
+      "title": "敵の調査・追跡・見失い後の捜索・巡回復帰",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h"
+      }
+    },
+    {
+      "id": "SR-013",
+      "status": "done",
+      "title": "グリッド経路探索と遮蔽物の回り込み",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h"
+      }
+    },
+    {
+      "id": "SR-014",
+      "status": "done",
+      "title": "E長押しによる情報回収・回収前の脱出制限",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h"
+      }
+    },
+    {
+      "id": "SR-015",
+      "status": "done",
+      "title": "脱出成功・捕獲失敗・再挑戦・一時停止",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp"
+      }
+    },
+    {
+      "id": "SR-016",
+      "status": "done",
+      "title": "日本語HUD・ミニマップ・現在地・経過時間・発見回数",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StealthGameplay.h"
+      }
+    },
+    {
+      "id": "SR-017",
+      "status": "done",
+      "title": "研究所9部屋・12室内開口と搬入口・家具20個の仮組み",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/laboratory-stage-v1.json"
+      }
+    },
+    {
+      "id": "SR-018",
+      "status": "done",
+      "title": "ステージ配置と見た目・判定の分離",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageData.h"
+      }
+    },
+    {
+      "id": "SR-019",
+      "status": "done",
+      "title": "モデルの寸法・床位置・90度単位の配置回転への対応",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h"
+      }
+    },
+    {
+      "id": "SR-020",
+      "status": "done",
+      "title": "種類キーからのモデル差し替え・不足時の仮形状表示",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "StageRenderer.h"
+      }
+    },
+    {
+      "id": "SR-021",
+      "status": "done",
+      "title": "F2俯瞰表示・F5再読み込みと失敗時の状態保持",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "Main.cpp"
+      }
+    },
+    {
+      "id": "SR-022",
+      "status": "done",
+      "title": "足音・発見・回収・結果の効果音イベント（素材未指定）",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "AudioBank.h"
+      }
+    },
+    {
+      "id": "SR-023",
+      "status": "done",
+      "title": "アセットの原本・実行用・検査結果のフォルダー分離",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/README.md"
+      }
+    },
+    {
+      "id": "SR-024",
+      "status": "done",
+      "title": "モデルとモーションの再変換スクリプト・キャラ別割り当て",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "assets/Motion/source/clip-map.json"
+      }
+    },
+    {
+      "id": "SR-025",
+      "status": "done",
+      "title": "配置エディターの家具・巡回点編集と幾何警告",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "planning/output/editor-check.json"
+      }
+    },
+    {
+      "id": "SR-026",
+      "status": "done",
+      "title": "配置JSONの書き出し・形式検査・バックアップ付き取り込み",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/import_stage.py"
+      }
+    },
+    {
+      "id": "SR-027",
+      "status": "done",
+      "title": "ビルドなしの実行用アセット同期",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "tools/sync-assets.ps1"
+      }
+    },
+    {
+      "id": "SR-028",
+      "status": "done",
+      "title": "基盤・AI・ミッション・モーション・差し替えの自動検査",
+      "evidence": {
+        "location": "local-game-project",
+        "path": "GameplayChecks.h"
+      }
+    },
+    {
+      "id": "SR-029",
+      "status": "in_progress",
+      "title": "既存モーションの足滑り・接地・切り替えの品質調整",
+      "note": "既存クリップの適用と補間は完了。接地IKの新規実装とは分けて調整する。"
+    },
+    {
+      "id": "SR-030",
+      "status": "in_progress",
+      "title": "敵の巡回・追跡速度と経路ごとの難易度調整",
+      "note": "特定経路の自動プレイは成功。全経路の実操作による調整は未完了。"
+    },
+    {
+      "id": "SR-031",
+      "status": "in_progress",
+      "title": "静的ステージモデルの取り込み手順・変換パイプライン",
+      "note": "差し替え口と共通MV1変換ツールは完成。静的FBXの一括取り込みは未接続。"
+    },
+    {
+      "id": "SR-032",
+      "status": "in_progress",
+      "title": "完成条件・対象PC・目標性能の最終仕様確定",
+      "note": "研究所1ステージの基本ループは確定。最終品質・性能基準の固定が残る。"
+    },
+    {
+      "id": "SR-033",
+      "status": "in_progress",
+      "title": "最新Release版の起動・回帰検証",
+      "note": "ビルド成功。最新バイナリはWindowsアプリ制御で起動を確認できていない。"
+    },
+    {
+      "id": "SR-034",
+      "status": "todo",
+      "title": "本番の壁モデル・材質を配置へ接続"
+    },
+    {
+      "id": "SR-035",
+      "status": "todo",
+      "title": "本番の床モデル・材質を配置へ接続"
+    },
+    {
+      "id": "SR-036",
+      "status": "todo",
+      "title": "本番の実験台モデルを配置へ接続"
+    },
+    {
+      "id": "SR-037",
+      "status": "todo",
+      "title": "本番の保管棚モデルを配置へ接続"
+    },
+    {
+      "id": "SR-038",
+      "status": "todo",
+      "title": "本番のロッカーモデルを配置へ接続"
+    },
+    {
+      "id": "SR-039",
+      "status": "todo",
+      "title": "本番の机モデルを配置へ接続"
+    },
+    {
+      "id": "SR-040",
+      "status": "todo",
+      "title": "本番のサーバーラックモデルを配置へ接続"
+    },
+    {
+      "id": "SR-041",
+      "status": "todo",
+      "title": "歩行・走行・忍び歩きの実際の足音素材を接続",
+      "note": "イベントの発生口とは別に素材と音量を確認する。"
+    },
+    {
+      "id": "SR-042",
+      "status": "todo",
+      "title": "発見・回収・成功・失敗の実際の効果音素材を接続",
+      "note": "イベントの発生口とは別に素材と聴感を確認する。"
+    },
+    {
+      "id": "SR-043",
+      "status": "todo",
+      "title": "BGMの導入と再生制御"
+    },
+    {
+      "id": "SR-044",
+      "status": "todo",
+      "title": "立体音響・距離減衰の導入",
+      "note": "現在の効果音バンクは2D。AIの聴覚とは別。"
+    },
+    {
+      "id": "SR-045",
+      "status": "todo",
+      "title": "可動扉と衝突・視線・経路探索の連動"
+    },
+    {
+      "id": "SR-046",
+      "status": "todo",
+      "title": "天井と三人称カメラの表示制御"
+    },
+    {
+      "id": "SR-047",
+      "status": "todo",
+      "title": "段差・重力に対応した移動"
+    },
+    {
+      "id": "SR-048",
+      "status": "todo",
+      "title": "足の接地IKの実装",
+      "note": "既存クリップの調整タスクとは別の新規機能。"
+    },
+    {
+      "id": "SR-049",
+      "status": "todo",
+      "title": "タイトル・開始・終了メニュー"
+    },
+    {
+      "id": "SR-050",
+      "status": "todo",
+      "title": "ゲーム内の設定画面と設定保存",
+      "note": "素材対応表の固定音量設定とは別。"
+    },
+    {
+      "id": "SR-051",
+      "status": "todo",
+      "title": "初回の操作チュートリアル",
+      "note": "現在の開発用HUDの操作案内とは別。"
+    },
+    {
+      "id": "SR-052",
+      "status": "todo",
+      "title": "コントローラー入力と案内表示"
+    },
+    {
+      "id": "SR-053",
+      "status": "todo",
+      "title": "実機操作で回収から脱出までの通しプレイ確認",
+      "note": "自動シミュレーションの成功とは分けて確認する。"
+    },
+    {
+      "id": "SR-054",
+      "status": "todo",
+      "title": "長時間動作・CPU／GPU／メモリ／FPSの測定と調整"
+    },
+    {
+      "id": "SR-055",
+      "status": "todo",
+      "title": "素材の出典・利用条件の整理"
+    },
+    {
+      "id": "SR-056",
+      "status": "todo",
+      "title": "依存物を含む配布用ビルド・最終確認",
+      "note": "開発中Release版の起動確認とは別に配布物として検証する。"
+    },
+    {
+      "id": "SR-057",
+      "status": "todo",
+      "title": "照明・影の導入と見やすさの調整"
+    },
+    {
+      "id": "SR-058",
+      "status": "todo",
+      "title": "忍び姿勢に合わせた視認高さ・当たり判定の調整",
+      "note": "現在は低い姿勢の表示でも判定の高さは従来のまま。"
+    }
+  ]
+}
